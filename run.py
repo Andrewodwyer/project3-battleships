@@ -72,7 +72,7 @@ print_board()
 
 """
 
-letter_to_number = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8} 
+letter_to_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7} 
 """
 convert column letters to numbers for grid/board. 
 I started "A" at 1 because letter unlike numbers start at 1
@@ -184,7 +184,7 @@ def get_column_input():
     
 
 column = get_column_input() # call column function
-print("You entered:", letter_to_number[column]) # call output. didn't need to add +1 to column letter as "A":1 in letter_to_number dictionary{}
+print("You entered:", letter_to_number[column]) # call output. didn't need to -1 or +1 to column letter as "A":0 in letter_to_number dictionary{}
 
 def see_ship_coordinates(row, column):
     return int(row), letter_to_number[column] #dictionary that has key:values
