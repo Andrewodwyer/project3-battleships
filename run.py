@@ -4,9 +4,9 @@ from random import randint #generate random number. e.g beg,end=1,8 for i in ran
 X = x-axis
 Y = y-axis
 "_" is the gameboard marking/spaces
-Gameboard will be 8 * 8 in size
-"." = water, space available to guess
-“@" = players ship
+Gameboard will be 6 * 6 in size
+"~" = water, space available to guess
+“S" = players ship
 "X" = Ship that was hit with bullet
 “O" = Water that was shot with bullet, a miss because it hit no ship
 
@@ -72,6 +72,14 @@ print_board()
 
 """
 
+BOARD_SIZE_X = 6
+BOARD_SIZE_Y = 6
+
+#Cconstants to represent elements on the grid/board
+NOT_GUESSED = "~"
+SHIP = "S"
+GUESSES = "X"
+
 def intro():
     print("Battleships\n")
     print("Would you like to see the rules Y/N")
@@ -88,27 +96,55 @@ intro()
 
 def create_grid():
     row = 0
-    alphabet_index = 0
-    alphabet = "ABCDEFGH"
+    abc_header_index = 0
+    abc_header = "ABCDEF" 
     
     # Print column labels
-    print("   " + " ".join(alphabet))
+    print("   " + " ".join(abc_header))
     
-    while row <= 8:
-        # Print row number
-        print(row, end="  ")
+    while row <= 5: # Print row number
+        print(row, end=" ")
         
         # Print cells in the row
         col = 0
-        while col < len(alphabet):
+        while col < len(abc_header):
             print(" ", end="")
-            print("_", end="")  # Change "X" to whatever you want to represent each cell
+            print("~", end="")  # "~" represents each position a ship could be in.
             col += 1
         
         print()  # Move to the next line after printing a row
         row += 1
 
 create_grid()
+
+def get_row_input():
+    """
+    get the row input from user and checks if it's a number between 0 and 5
+    """
+    while True:
+        row_number = input("Please enter a row guess, number between 0 and 5: ")
+        if "0" <= row_number <= "5" : #set parameters between "0" to "5"
+            return row_number
+        else:
+            print(f"'{row_number}' is not a number between 0 and 5.")
+
+row = get_row_input() #call row function
+print("You chose row:", row)
+
+def get_column_input():
+    """
+    get the column input from user and checks if it's a letter between A and F
+    """
+    while True:
+        column = input("Choose a column, eg. A,B,C: ").upper() #.upper makes the input uppercase
+        if "A" <= column <= "F": #set parameters between "a" to "f"
+            return column
+        else:
+            print(f"{column} is not a letter between 'A' and 'F'.")
+
+column = get_column_input() # call column function
+print("You entered:", column) # call output
+
 
 """
 
@@ -123,9 +159,10 @@ def random_col(grid):
 ship_row = random_row(grid)
 ship_col = random_col(grid)
 """
-
+"""
 print("Choose a row: eg. 1,2,3")
 row_choice = int(input())
 
 print("Choose a column: eg. A,B,C")
 column_choice = str(input().upper()) #.upper makes the input uppercase
+"""
