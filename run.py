@@ -82,10 +82,10 @@ BOARD_SIZE_X = 6
 BOARD_SIZE_Y = 6
 
 #Cconstants to represent elements on the grid/board
-NOT_GUESSED = "~"
-SHIP = "S" 
-GUESSES = "0" # player misses, shown on computer board
-
+NOT_GUESSED = "~" #guess board marks before shot in this position
+SHIP = "S" # players ship
+MISS_MARK = "O" # player misses, shown on computer board
+HIT_MARK = "X" # if correct guess, Board updates with hit
 
 
 print("Battleships\n")
