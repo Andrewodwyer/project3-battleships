@@ -113,10 +113,11 @@ def create_grid():
     abc_header = "ABCDEF" 
     
     # Print column labels
-    print("   " + " ".join(abc_header))
+    print("    " + " ".join(abc_header)) #first "" is space from the start, second "" is space between letters
+    print("  +-------------+")
     
     while row <= 5: # Print row number
-        print(row, end=" ")
+        print(row, end=" |") #end=" " end is saying it'd finished and the next element does not need to go on a new line.
         
         # Print cells in the row
         col = 0
@@ -125,8 +126,9 @@ def create_grid():
             print("~", end="")  # "~" represents each position a ship could be in.
             col += 1
         
-        print()  # Move to the next line after printing a row
+        print(" |")  # Move to the next line after printing a row
         row += 1 #added a row and moves on until the row is less than or equal to 5, while loop
+    print("  +-------------+")
 
 create_grid()
 
