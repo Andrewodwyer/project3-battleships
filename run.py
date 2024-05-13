@@ -77,8 +77,8 @@ BOARD_SIZE_Y = 6
 
 #Cconstants to represent elements on the grid/board
 NOT_GUESSED = "~"
-SHIP = "S"
-GUESSES = "X"
+SHIP = "S" 
+GUESSES = "0" # player misses, shown on computer board
 
 def intro():
     print("Battleships\n")
@@ -95,6 +95,9 @@ def intro():
 intro()
 
 def create_grid():
+    """
+    Creates the game grid/board, ABCDEF for columns and 0-6 for rows
+    """
     row = 0
     abc_header_index = 0
     abc_header = "ABCDEF" 
@@ -113,9 +116,18 @@ def create_grid():
             col += 1
         
         print()  # Move to the next line after printing a row
-        row += 1
+        row += 1 #added a row and moves on until the row is less than or equal to 5, while loop
 
 create_grid()
+
+def create_ships():
+    pass
+
+def see_ship_location():
+    pass
+
+def see_hits():
+    pass
 
 def get_row_input():
     """
@@ -137,7 +149,7 @@ def get_column_input():
     """
     while True:
         column = input("Choose a column, eg. A,B,C: ").upper() #.upper makes the input uppercase
-        if "A" <= column <= "F": #set parameters between "a" to "f"
+        if "A" <= column <= "F": #set parameters between "A" to "F"
             return column
         else:
             print(f"{column} is not a letter between 'A' and 'F'.")
