@@ -121,7 +121,18 @@ def create_grid():
 create_grid()
 
 def create_ships():
-    pass
+    """
+    Place ship on the grid. There will be 5 ships on the board. Each ship will be in a row and column co-ordinates. 
+    The function places the row and column at random and makes it = "S". 
+    The nested while loop checks if any of the 5 random selections are equal to already created placement and if it is
+    it will run it again until all 5 ships are in different places
+    """
+    for ship in range(5): # 5 ships to place on board
+        ship_row, ship_column = randint(0,5), randint(0,5) #ship row is random, ship column is random, taken from random import randint
+        while board[ship_row][ship_column] == 'S': #check if ship row or ship column is equal to "S" and if it is, random generate again
+            ship_row, ship_column = randint(0,5), randint(0,5)
+        board[ship_row][ship_column] = "S" #Ships are now on the board
+
 
 def see_ship_location():
     pass
