@@ -11,7 +11,7 @@ Gameboard will be 6 * 6 in size
 
 """
 
-letter_to_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7} 
+letter_to_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8} 
 """
 convert column letters to numbers for grid/board. 
 I started "A" at 1 because letter unlike numbers start at 1
@@ -28,22 +28,29 @@ MISS_MARK = "O" # player misses, shown on computer board
 HIT_MARK = "X" # if correct guess, Board updates with hit
 
 
-print("Battleships\n")
+print("Welcome to Battleships\n")
 
-def show_instructions():
-    while True:
-        choice = input("Would you like to see the rules? (Y/N): ").upper()
 
-        if choice == 'Y':
-            print("Battleships is a classic two-player game played on a grid.\nYou'll play against the computer, each having 5 ships. \nThe first to hit all 5 ships is the winner. \nYou will see 2 grids, first is your grid with ship placement and the second is the computers grid. \nThe computers grid won’t display their ship positions.\nHowever it will be mark with an “X” if you get a hit or “O” if it’s a miss.\nTake a shot by entering coordinates (e.g., A1, B5) on the grid. \nThe goal is to sink all of the opponent's ships before they sink yours.\n")
-            break # exit while loop after showing rules
-        elif choice == 'N':
-            break #Exit the loop without rules shown
-        else:
-            print("You must choose Y or N.")
+menu_request = ''
+while menu_request == '':
+    print("""
+What would you like to do?
+1. Read Instructions
+2. Play Game
+          """)
+    user_in = input('What would you like: ').lower().strip()
+    possible_answers = ['1', '2']
+    if user_in in possible_answers:
+        print(f'Thanks, you have chosen {user_in}!')
+        menu_request = user_in
+    else:
+        print('No, you just need to input 1 or 2 - there are no other options')
 
-show_instructions()
-
+if menu_request == "1":
+    print("Battleships is a classic two-player game played on a grid.\nYou'll play against the computer, each having 5 ships. \nThe first to hit all 5 ships is the winner. \nYou will see 2 grids, first is your grid with ship placement and the second is the computers grid. \nThe computers grid won’t display their ship positions.\nHowever it will be mark with an “X” if you get a hit or “O” if it’s a miss.\nTake a shot by entering coordinates (e.g., A1, B5) on the grid. \nThe goal is to sink all of the opponent's ships before they sink yours.\n")
+else:
+    pass
+    
 user_name = input("What is your name: ")
 print(f"Hello {user_name}, are you ready to play?\n")
 
@@ -89,41 +96,29 @@ def create_ships():
             ship_row, ship_column = randint(0,5), randint(0,5)
         board[ship_row][ship_column] = "S" #Ships are now on the board
 
-def get_row_input():
-    """
-    get the row input from user and checks if it's a number between 0 and 5
-    """
-    while True:
-        try:
-            row_number = input("Please enter a row guess, number between 0 and 5: ")
-            if "0" <= row_number <= "5" : #set parameters between "0" to "5"
-                return row_number
-                break
-            else:
-                print(f"'{row_number}' is not a number between 0 and 5.")
-        except ValueError:
-            print("Input is not a number. ")
 
-row = get_row_input() #call row function
+row = ""
+while row == "":
+    row_number_input = input("Please enter a row guess, number between 0 and 5: ").strip()
+    row_number_options = ["0", "1", "2", "3", "4", "5" ]
+    if row_number_input in row_number_options : #set parameters between "0" to "5"
+        row = row_number_input
+    else:
+        print(f"'{row_number_input}' is not a number between 0 and 5.")
+
 print("You chose row:", row)
 
-def get_column_input():
-    """
-    get the column input from user and checks if it's a letter between A and F
-    """
-    while True:
-        try:
-            column = input("Choose a column, either A,B,C,D,E,F: ").upper() #.upper makes the input uppercase
-            if "A" <= column <= "F": #set parameters between "A" to "F"
-                return column
-                break
-            else:
-                print(f"{column} is not a letter between 'A' and 'F'.")
-        except ValueError:
-            print("Input is not a Letter")
+column = ""
+while column == "":
+    column_letter_input = input("Please enter a column guess, letter between 'A' and 'F': ").upper().strip() #.upper makes the input uppercase
+    column_number_options = ["A", "B", "C", "D", "E", "F" ] 
+    if column_letter_input in column_number_options : #set parameters between "A" to "F"
+        column = column_letter_input
+    else:
+        print(f"'{column_letter_input}' is not a letter between 'A' and 'F'.")
 
-column = get_column_input() # call column function
-print("You entered:", column) # call output. didn't need to -1 or +1 to column letter as "A":0 in letter_to_number dictionary{}
+print("You chose column:", column)
+
 
 def see_ship_coordinates():
     return int(row), letter_to_number[column] #dictionary that has key:values
