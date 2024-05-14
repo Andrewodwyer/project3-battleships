@@ -181,16 +181,16 @@ def get_column_input():
                 print(f"{column} is not a letter between 'A' and 'F'.")
         except ValueError:
             print("Input is not a Letter")
-    
 
 column = get_column_input() # call column function
-print("You entered:", letter_to_number[column]) # call output. didn't need to -1 or +1 to column letter as "A":0 in letter_to_number dictionary{}
+print("You entered:", column) # call output. didn't need to -1 or +1 to column letter as "A":0 in letter_to_number dictionary{}
 
-def see_ship_coordinates(row, column):
+def see_ship_coordinates():
     return int(row), letter_to_number[column] #dictionary that has key:values
     print(int(row), letter_to_number[column])
 
-see_ship_coordinates(row, column)
+ships_coordinates = see_ship_coordinates()
+print(ships_coordinates)
 
 
 
