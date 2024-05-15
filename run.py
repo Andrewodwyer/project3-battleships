@@ -55,13 +55,14 @@ user_name = input("What is your name: ")
 print(f"Hello {user_name}, are you ready to play?\n")
 
 
-
-grid = [] #make a grid list
-for row in range(9):
-    new_row = [] # make row of 9
-    for col in range(9):# Loop through columns
-        new_row.append(' ') # Add an empty space to each cell of the row
-    grid.append(new_row) #.append/add the row to the grid
+def create_grid():
+    grid = [] #make a grid list
+    for row in range(9):
+        new_row = [] # make row of 9
+        for col in range(9):# Loop through columns
+            new_row.append(' ') # Add an empty space to each cell of the row
+        grid.append(new_row) #.append/add the row to the grid
+    return grid
 
 
 
@@ -76,49 +77,32 @@ for i in range(9): #loop though 9 times
     print(i, row)
 print(" +-----------------+")
 
-def create_ships():
+def place_ships(grid):
     """
-    Place ship on the grid. There will be 5 ships on the board. Each ship will be in a row and column co-ordinates. 
-    The function places the row and column at random and makes it = "S". 
-    The nested while loop checks if any of the 5 random selections are equal to already created placement and if it is
-    it will run it again until all 5 ships are in different places
+    ship variable is = 2 lists. a tuple of size(3) or (2) and type. Each list is given a quantity *2 *3.
+    in the for loop, a random direction is used with the function random.choice(), calling 'horizontal' or 'vertical'
+    ships are placed in the grid area and only on empty spaces
     """
-    for ship in range(5): # 5 ships to place on board
-        ship_row, ship_column = randint(0,5), randint(0,5) #ship row is random, ship column is random, taken from random import randint
-        while board[ship_row][ship_column] == 'S': #check if ship row or ship column is equal to "S" and if it is, random generate again
-            ship_row, ship_column = randint(0,5), randint(0,5)
-        board[ship_row][ship_column] = "S" #Ships are now on the board
+    ships = [(3, 'large')] * 2 + [(2, 'medium')] * 3
+    for size, ship_type in ships:
+        for s in range(100):  # Try up to 100 times to place the ship, without overlapping or going off grid
+            direction = random.choice(['horizontal', 'vertical'])
+            if direction == 'horizontal':
+                row = random.randint(0, 8)
+                col = random.randint(0, 8 - size)
+                if all(grid[row][col+j] == ' ' for j in range(size)): #checks if grid row and column coordinates are ' ' empty
+                    for j in range(size):
+                        grid[row][col+j] = ship_type[0].upper() 
+                    break # breaks when the random ships are places
+            else: #if direction vertical at random.choice(). do the same thing as 'horizontal' if statement and loop
+                row = random.randint(0, 8 - size)
+                col = random.randint(0, 8)
+                if all(grid[row+i][col] == ' ' for i in range(size)):
+                    for i in range(size):
+                        grid[row+i][col] = ship_type[0].upper() #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
+                    break
 
 
-row = ""
-while row == "":
-    row_number_input = input("Please enter a row guess, number between 0 and 5: ").strip()
-    row_number_options = ["0", "1", "2", "3", "4", "5" ]
-    if row_number_input in row_number_options : #set parameters between "0" to "5"
-        row = row_number_input
-    else:
-        print(f"'{row_number_input}' is not a number between 0 and 5.")
-
-print("You chose row:", row)
-
-column = ""
-while column == "":
-    column_letter_input = input("Please enter a column guess, letter between 'A' and 'F': ").upper().strip() #.upper makes the input uppercase
-    column_number_options = ["A", "B", "C", "D", "E", "F" ] 
-    if column_letter_input in column_number_options : #set parameters between "A" to "F"
-        column = column_letter_input
-    else:
-        print(f"'{column_letter_input}' is not a letter between 'A' and 'F'.")
-
-print("You chose column:", column)
-
-
-def see_ship_coordinates():
-    return int(row), letter_to_number[column] #dictionary that has key:values
-    print(int(row), letter_to_number[column])
-
-ships_coordinates = see_ship_coordinates()
-print(ships_coordinates)
 
 
 
