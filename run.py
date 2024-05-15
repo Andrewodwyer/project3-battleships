@@ -17,7 +17,7 @@ I started "A" at 1 because letter unlike numbers start at 1
 Will need to chabge letters to numbers for column and user .upper() so if the player types lowercase it will be changed to upper 
 """
 
-#Cconstants to represent elements on the grid/board
+#Constants to represent elements on the grid/board
 BOARD_SIZE_X = 9
 BOARD_SIZE_Y = 9
 
@@ -78,7 +78,7 @@ def print_board(grid):
         row = '' # sting that stores the content of each row
         for j in range(BOARD_SIZE_X): # nested loop for columns
             row += grid[i][j] # this appends/add the value of the cell eg A0
-            if j < 8: # add '|' to inside columns only. only the first 8 cells
+            if j < (BOARD_SIZE_X -1): # add '|' to inside columns only. only the first 8 cells
                 row += '|'
         print(i, row,)
     print(" +-----------------+")
