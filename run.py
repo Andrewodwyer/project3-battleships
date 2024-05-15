@@ -54,7 +54,6 @@ else:
 user_name = input("What is your name: ")
 print(f"Hello {user_name}, are you ready to play?\n")
 
-
 def create_grid():
     """
     returns a grid that is 9x9 in size. using for loops to make 9 columns cells in 9 row lists
