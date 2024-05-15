@@ -23,6 +23,7 @@ BOARD_SIZE_Y = 9
 
 MISS_MARK = "O" # player misses, shown on computer board
 HIT_MARK = "X" # if correct guess, Board updates with hit
+SHIPS = {"aircraft_carrier":5, "battleship":4, "destroyer":3, "submarine":2, "cruiser":2}
 
 
 print("Welcome to Battleships\n")
@@ -88,8 +89,7 @@ def place_ships(grid):
     in the for loop, a random direction is used with the function random.choice(), calling 'horizontal' or 'vertical'
     ships are placed in the grid area and only on empty spaces
     """
-    ships = [(3, 'large')] * 2 + [(2, 'medium')] * 3
-    for size, ship_type in ships:
+    for ship_type, size in SHIPS.items():
         for s in range(100):  # Try up to 100 times to place the ship, without overlapping or going off grid
             direction = random.choice(['horizontal', 'vertical'])
             if direction == 'horizontal':
