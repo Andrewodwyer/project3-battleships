@@ -85,7 +85,7 @@ def print_board(grid):
 
 def place_ships(grid):
     """
-    ship variable is = 2 lists. a tuple of size(3) or (2) and type. Each list is given a quantity *2 *3.
+    SHIPS constant is =  a dictionary with ship types and their sizes. .items() gets the key.value and assigns them to ship_type (key), size(value)
     in the for loop, a random direction is used with the function random.choice(), calling 'horizontal' or 'vertical'
     ships are placed in the grid area and only on empty spaces
     """
