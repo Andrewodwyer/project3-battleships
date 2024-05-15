@@ -1,4 +1,4 @@
-from random import randint #generate random number. e.g beg,end=1,8 for i in range(8): print(random.randint(beg,end))
+from random import randint #generate random ship orientation and placement
 
 """
 X = x-axis
@@ -9,21 +9,18 @@ Gameboard will be 6 * 6 in size
 "X" = Ship that was hit with bullet
 “O" = Water that was shot with bullet, a miss because it hit no ship
 
-"""
 
 letter_to_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8} 
-"""
+
 convert column letters to numbers for grid/board. 
 I started "A" at 1 because letter unlike numbers start at 1
 Will need to chabge letters to numbers for column and user .upper() so if the player types lowercase it will be changed to upper 
 """
 
-BOARD_SIZE_X = 6
-BOARD_SIZE_Y = 6
-
 #Cconstants to represent elements on the grid/board
-NOT_GUESSED = "~" #guess board marks before shot in this position
-SHIP = "S" # players ship
+BOARD_SIZE_X = 9
+BOARD_SIZE_Y = 9
+
 MISS_MARK = "O" # player misses, shown on computer board
 HIT_MARK = "X" # if correct guess, Board updates with hit
 
@@ -59,9 +56,9 @@ def create_grid():
     returns a grid that is 9x9 in size. using for loops to make 9 columns cells in 9 row lists
     """
     grid = [] #make a grid list
-    for row in range(9):
+    for row in range(BOARD_SIZE_X):
         new_row = [] # make row of 9
-        for col in range(9):# Loop through columns
+        for col in range(BOARD_SIZE_Y):# Loop through columns
             new_row.append(' ') # Add an empty space to each cell of the row
         grid.append(new_row) #.append/add the row to the grid
     return grid
@@ -76,13 +73,13 @@ def print_board(grid):
     """
     print("  A B C D E F G H I")
     print(" +-----------------+")
-    for i in range(9): #loop though 9 times
+    for i in range(): #loop though 9 times
         row = '' # sting that stores the content of each row
-        for j in range(9): # nested loop for columns
+        for j in range(BOARD_SIZE_X): # nested loop for columns
             row += grid[i][j] # this appends/add the value of the cell eg A0
-            if j < 8: # add '|' to inside columns only
+            if j < 8: # add '|' to inside columns only. only the first 8 cells
                 row += '|'
-        print(i, row)
+        print(i, row,)
     print(" +-----------------+")
 
 def place_ships(grid):
@@ -96,22 +93,22 @@ def place_ships(grid):
         for s in range(100):  # Try up to 100 times to place the ship, without overlapping or going off grid
             direction = random.choice(['horizontal', 'vertical'])
             if direction == 'horizontal':
-                row = random.randint(0, 8)
-                col = random.randint(0, 8 - size)
+                row = random.randint(0, (BOARD_SIZE_X -1)) #BOARD_SIZE_X is 9 so I've -1 as the boards starts at 0 not 1
+                col = random.randint(0, (BOARD_SIZE_X -1) - size)
                 if all(grid[row][col+j] == ' ' for j in range(size)): #checks if grid row and column coordinates are ' ' empty
                     for j in range(size):
                         grid[row][col+j] = ship_type[0].upper() 
                     break # breaks when the random ships are places
             else: #if direction vertical at random.choice(). do the same thing as 'horizontal' if statement and loop
-                row = random.randint(0, 8 - size)
-                col = random.randint(0, 8)
+                row = random.randint(0, (BOARD_SIZE_Y -1) - size) 
+                col = random.randint(0, (BOARD_SIZE_Y -1))
                 if all(grid[row+i][col] == ' ' for i in range(size)):
                     for i in range(size):
                         grid[row+i][col] = ship_type[0].upper() #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
                     break
 
 
-
+ 
 
 
 def see_hits(board):
