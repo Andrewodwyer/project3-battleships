@@ -111,11 +111,19 @@ def place_ships(grid):
  
 
 
-def see_hits(board):
-    count = 0
-    for row in board:
-        for column in row:
-            if column =="S":
-                count += 1
-    return count
+def check_game_over(grid):
+    """
+    checks the number of hits. If number of hits is == to the
+    number of cells the ships take up. The if statement returns true.
+    the game ends
+    """
+    score = 0
+    for row in grid:
+        for cell in row:
+            if cell == "X":  # "X" represents a sunk ship
+                score += 1
+    if score == 5:
+        return True  # All ships are sunk
+    else:
+        return False  # Game is not over yet
 
