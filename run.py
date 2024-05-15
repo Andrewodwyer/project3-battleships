@@ -55,33 +55,26 @@ user_name = input("What is your name: ")
 print(f"Hello {user_name}, are you ready to play?\n")
 
 
-def create_grid():
-    """
-    Creates the game grid/board, ABCDEF for columns and 0-6 for rows
-    """
-    row = 0
-    abc_header_index = 0
-    abc_header = "ABCDEFGHI" 
-    
-    # Print column labels
-    print("    " + " ".join(abc_header)) #first "" is space from the start, second "" is space between letters
-    print("  +-------------------+")
-    
-    while row <= 9: # Print row number
-        print(row, end=" |") #end=" " end is saying it'd finished and the next element does not need to go on a new line.
-        
-        # Print cells in the row
-        col = 0
-        while col < len(abc_header):
-            print(" ", end="")
-            print(".", end="")  # "~" represents each position a ship could be in.
-            col += 1
-        
-        print(" |")  # Move to the next line after printing a row
-        row += 1 #added a row and moves on until the row is less than or equal to 5, while loop
-    print("  +-------------------+")
 
-create_grid()
+grid = [] #make a grid list
+for row in range(9):
+    new_row = [] # make row of 9
+    for col in range(9):# Loop through columns
+        new_row.append(' ') # Add an empty space to each cell of the row
+    grid.append(new_row) #.append/add the row to the grid
+
+
+
+print("  A B C D E F G H I")
+print(" +-----------------+")
+for i in range(9): #loop though 9 times
+    row = '' # sting that stores the content of each row
+    for j in range(9): # nested loop for columns
+        row += grid[i][j] # this appends/add the value of the cell eg A0
+        if j < 8: # add '|' to inside columns only
+            row += '|'
+    print(i, row)
+print(" +-----------------+")
 
 def create_ships():
     """
