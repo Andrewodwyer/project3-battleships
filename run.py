@@ -61,25 +61,25 @@ def create_grid():
     """
     row = 0
     abc_header_index = 0
-    abc_header = "ABCDEF" 
+    abc_header = "ABCDEFGHI" 
     
     # Print column labels
     print("    " + " ".join(abc_header)) #first "" is space from the start, second "" is space between letters
-    print("  +-------------+")
+    print("  +-------------------+")
     
-    while row <= 5: # Print row number
+    while row <= 9: # Print row number
         print(row, end=" |") #end=" " end is saying it'd finished and the next element does not need to go on a new line.
         
         # Print cells in the row
         col = 0
         while col < len(abc_header):
             print(" ", end="")
-            print("~", end="")  # "~" represents each position a ship could be in.
+            print(".", end="")  # "~" represents each position a ship could be in.
             col += 1
         
         print(" |")  # Move to the next line after printing a row
         row += 1 #added a row and moves on until the row is less than or equal to 5, while loop
-    print("  +-------------+")
+    print("  +-------------------+")
 
 create_grid()
 
