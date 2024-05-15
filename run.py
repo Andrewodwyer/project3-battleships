@@ -56,6 +56,9 @@ print(f"Hello {user_name}, are you ready to play?\n")
 
 
 def create_grid():
+    """
+    returns a grid that is 9x9 in size. using for loops to make 9 columns cells in 9 row lists
+    """
     grid = [] #make a grid list
     for row in range(9):
         new_row = [] # make row of 9
@@ -65,17 +68,23 @@ def create_grid():
     return grid
 
 
+def print_board(grid):
+    """
+    Takes the parameter of grid returned from create_grid()
+    prints a header with letters, a frame top and bottom.
+    prints rows numbered 0-8 and columns, seperated with a '|'. the '|' is a viual que of the cells
 
-print("  A B C D E F G H I")
-print(" +-----------------+")
-for i in range(9): #loop though 9 times
-    row = '' # sting that stores the content of each row
-    for j in range(9): # nested loop for columns
-        row += grid[i][j] # this appends/add the value of the cell eg A0
-        if j < 8: # add '|' to inside columns only
-            row += '|'
-    print(i, row)
-print(" +-----------------+")
+    """
+    print("  A B C D E F G H I")
+    print(" +-----------------+")
+    for i in range(9): #loop though 9 times
+        row = '' # sting that stores the content of each row
+        for j in range(9): # nested loop for columns
+            row += grid[i][j] # this appends/add the value of the cell eg A0
+            if j < 8: # add '|' to inside columns only
+                row += '|'
+        print(i, row)
+    print(" +-----------------+")
 
 def place_ships(grid):
     """
