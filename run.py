@@ -24,6 +24,13 @@ BOARD_SIZE_Y = 9
 MISS_MARK = "O" # player misses, shown on computer board
 HIT_MARK = "X" # if correct guess, Board updates with hit
 SHIPS = {"aircraft_carrier":5, "battleship":4, "destroyer":3, "submarine":2, "cruiser":2}
+TOTAL_AREA_OF_ALL_SHIPS = sum(SHIPS[item] for item in SHIPS) 
+"""
+SHIPS[item] retrieves the length of each ship (the value).
+for item in SHIPS iterates over each ship type in the SHIPS dictionary.
+sum() checks the total space the ships add up to
+"""
+
 
 
 print("Welcome to Battleships\n")
@@ -122,7 +129,7 @@ def check_game_over(grid):
         for cell in row:
             if cell == "X":  # "X" represents a sunk ship
                 score += 1
-    if score == 5:
+    if score == TOTAL_AREA_OF_ALL_SHIPS: #the for loop sum() that checks the total space the ships add up to
         return True  # All ships are sunk
     else:
         return False  # Game is not over yet
