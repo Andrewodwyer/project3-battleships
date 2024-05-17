@@ -169,6 +169,8 @@ def computer_turn(player_board, computer_tracking_board):
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
                 player_board[row][col] = 'O' #update player board with 'O'
             break
+    print("Player's ship positions:")
+    print_board(player_board)
  
 
 def check_game_over(grid):
