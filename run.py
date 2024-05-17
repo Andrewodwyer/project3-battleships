@@ -189,3 +189,43 @@ def check_game_over(grid):
     else:
         return False  # Game is not over yet
 
+def main():
+    """
+    This is the main game run function. It calls for 4 boards. 2 for the player and 2 for the computer.
+    player_board has the players ships placed on it.
+    computer_board has the computer ships placed on it
+    player_tracking_board has the positions of where they have fired. same with computer_tracking_board
+    It prints 2 board to the terminal. 
+    First, Player board with ship positions and second, players tracking board that shows hits or missed
+    """
+        
+    player_board = create_grid()
+    computer_board = create_grid()
+    player_tracking_board = create_grid()
+    computer_tracking_board = create_grid()
+
+    print("Placing ships...")
+    place_ships(player_board) #ships are placed in the player_board
+    place_ships(computer_board) #ships are placed in the player_board
+
+    #print("Player's ship positions:")
+    #print_board(player_board) #player_board is printed to terminal
+
+    play_game = True #game plays 
+    while play_game:
+        print("\nPlayer's Tracking Board:")
+        print_board(player_tracking_board)
+        player_turn(computer_board, player_tracking_board) #computer_board and player_tracking_board are arguments so see if the boards have an 'X', 'O' or ' ' and instructions on what to do
+        if check_game_over(computer_board): #computer_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS
+            print(f"{user_name}, You win!")
+            break
+
+        print("\nPlayer's ship positions:")
+        print_board(player_board)
+        computer_turn(player_board, computer_tracking_board)
+        if check_game_over(player_board): #player_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS. player_board is the one with players ship positions, so if they're all hit, the computer wins
+            print(f"Better Luck next time {user_name}, Computer wins!")
+            break
+
+if __name__ == "__main__": 
+    main() #main is called directly
