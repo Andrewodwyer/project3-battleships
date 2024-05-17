@@ -208,8 +208,8 @@ def main():
     place_ships(player_board) #ships are placed in the player_board
     place_ships(computer_board) #ships are placed in the player_board
 
-    #print("Player's ship positions:")
-    #print_board(player_board) #player_board is printed to terminal
+    print("Player's ship positions:")
+    print_board(player_board) #player_board is printed to terminal
 
     play_game = True #game plays 
     while play_game:
@@ -220,8 +220,8 @@ def main():
             print(f"{user_name}, You win!")
             break
 
-        print("\nPlayer's ship positions:")
-        print_board(player_board)
+        #print("\nPlayer's ship positions:")
+        #print_board(player_board)
         computer_turn(player_board, computer_tracking_board)
         if check_game_over(player_board): #player_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS. player_board is the one with players ship positions, so if they're all hit, the computer wins
             print(f"Better Luck next time {user_name}, Computer wins!")
