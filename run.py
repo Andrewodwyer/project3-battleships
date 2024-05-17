@@ -137,7 +137,7 @@ def player_turn(computer_board, player_tracking_board):
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
             if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
                 if computer_board[row][col] != ' ':
-                    print("Hit, jolly good shot old chap!"")
+                    print("Hit, jolly good shot old chap!")
                     player_tracking_board[row][col] = 'X'
                     computer_board[row][col] = 'X'
                 else:
