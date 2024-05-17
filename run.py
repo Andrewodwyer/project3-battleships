@@ -160,14 +160,15 @@ def computer_turn(player_board, computer_tracking_board):
         random_col = LETTERS[random.randint(0, BOARD_SIZE_X -1)] #random choice of the letters in constant LETTERS
         col = ord(random_col) - ord('A') #ord() converts letters to numbers
         if computer_tracking_board[row][col] != 'X' and computer_tracking_board[row][col] != 'O': #checks if the cell is marked with an X for hit or O for miss
-            print("Computer hit at", str(random_col) + str(row)) # strings e.g "A""2"
-            computer_tracking_board[row][col] = 'X' #update computer tracking board with X
-            player_board[row][col] = 'X' #update player board with X
-        else:
-            print("Computer missed at", str(random_col) + str(row)) # else if ' ' 
-            computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
-            player_board[row][col] = 'O' #update player board with 'O'
-        break
+            if player_board[row][col] != ' ': #player_board position has to be ' ' otherwise it's a hit every time.
+                print("Computer hit at", str(random_col) + str(row)) # strings e.g "A""2"
+                computer_tracking_board[row][col] = 'X' #update computer tracking board with X
+                player_board[row][col] = 'X' #update player board with X
+            else:
+                print("Computer missed at", str(random_col) + str(row)) # else if ' ' 
+                computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
+                player_board[row][col] = 'O' #update player board with 'O'
+            break
  
 
 def check_game_over(grid):
