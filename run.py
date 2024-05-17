@@ -92,6 +92,7 @@ def print_board(grid):
 
 def place_ships(grid):
     """
+    places ships on the grid. To be called later for player_board and computer_board
     SHIPS constant is =  a dictionary with ship types and their sizes. .items() gets the key.value and assigns them to ship_type (key), size(value)
     in the for loop, a random direction is used with the function random.choice(), calling 'horizontal' or 'vertical'
     ships are placed in the grid area and only on empty spaces
@@ -114,9 +115,60 @@ def place_ships(grid):
                         grid[row+i][col] = ship_type[0].upper() #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
                     break
 
+def player_turn(computer_board, player_tracking_board):
+    """
+    players chooses a row and column e.g A4
+    Check to see if length is 2, first (0) is a letter, second(1) is a number
+    from the constants LETTERS, NUMBERS
+    letter has to be converted to a number for the position using ord()
+    we - ord('A') as A is one on the grid but numbers start at 0
+    we return the col letter and row number to the terminal and say if it hit or miss
+    inner else the cell is marked with X or O, you've fired at this position already
+    outer else input not in ==2 or not number or not letter.
+    we only break (stop loop) when it's a hit of miss.
+    """
+    player_turn = True
+    while player_turn:
+        print("Your turn:")
+        target = input("Enter target (e.g., A4): ").upper()
+        if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
+            row = int(target[1])
+            col = ord(target[0]) - ord('A') #ord() converts letters to numbers
+            if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
+                if computer_board[row][col] != ' ':
+                    print("Hit!")
+                    player_tracking_board[row][col] = 'X'
+                    computer_board[row][col] = 'X'
+                else:
+                    print("Miss!")
+                    player_tracking_board[row][col] = 'O'
+                break #loop only breaks when it's a hit or miss (conditions for X or O)
+            else:
+                print("You've already fired at this location.")
+        else:
+            print("Invalid input. Please enter a valid target.")
 
+def computer_turn(player_board, computer_tracking_board):
+    """
+    computer chooses a random number for row and random letter for column.
+    like players_turn, the letter has to be converted to a number for the position using ord()
+    we return the col letter and row number to the terminal and say if it hit or miss
+    """
+    computer_turn = True
+    while computer_turn:
+        row = random.randint(0, (BOARD_SIZE_X -1)) #BOARD_SIZE_X constant is 9, we -1 as the row starts at 0
+        random_col = LETTERS[random.randint(0, BOARD_SIZE_X -1)] #random choice of the letters in constant LETTERS
+        col = ord(random_col) - ord('A') #ord() converts letters to numbers
+        if computer_tracking_board[row][col] != 'X' and computer_tracking_board[row][col] != 'O': #checks if the cell is marked with an X for hit or O for miss
+            print("Computer hit at", str(random_col) + str(row)) # strings e.g "A""2"
+            computer_tracking_board[row][col] = 'X' #update computer tracking board with X
+            player_board[row][col] = 'X' #update player board with X
+        else:
+            print("Computer missed at", str(random_col) + str(row)) # else if ' ' 
+            computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
+            player_board[row][col] = 'O' #update player board with 'O'
+        break
  
-
 
 def check_game_over(grid):
     """
