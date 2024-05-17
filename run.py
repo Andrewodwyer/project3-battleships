@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import random #generate random ship orientation and placement
+import time #for delay in printing new boards after results
 
 #Constants to represent elements on the grid/board
 SCOPE = [
@@ -136,11 +137,11 @@ def player_turn(computer_board, player_tracking_board):
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
             if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
                 if computer_board[row][col] != ' ':
-                    print("Hit!")
+                    print("Hit, jolly good shot old chap!"")
                     player_tracking_board[row][col] = 'X'
                     computer_board[row][col] = 'X'
                 else:
-                    print("Miss!")
+                    print("Miss, nothing but water!")
                     player_tracking_board[row][col] = 'O'
                 break #loop only breaks when it's a hit or miss (conditions for X or O)
             else:
@@ -164,6 +165,7 @@ def computer_turn(player_board, computer_tracking_board):
                 print("Computer hit at", str(random_col) + str(row)) # strings e.g "A""2"
                 computer_tracking_board[row][col] = 'X' #update computer tracking board with X
                 player_board[row][col] = 'X' #update player board with X
+                return 
             else:
                 print("Computer missed at", str(random_col) + str(row)) # else if ' ' 
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
@@ -219,7 +221,7 @@ def main():
         if check_game_over(computer_board): #computer_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS
             print(f"{user_name}, You win!")
             break
-
+        time.sleep(1.5)
         #print("\nPlayer's ship positions:")
         #print_board(player_board)
         computer_turn(player_board, computer_tracking_board)
