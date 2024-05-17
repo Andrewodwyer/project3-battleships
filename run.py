@@ -1,22 +1,5 @@
 from random import randint #generate random ship orientation and placement
 
-"""
-X = x-axis
-Y = y-axis
-Gameboard will be 6 * 6 in size
-"~" = water, space available to guess
-“S" = players ship
-"X" = Ship that was hit with bullet
-“O" = Water that was shot with bullet, a miss because it hit no ship
-
-
-letter_to_number = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8} 
-
-convert column letters to numbers for grid/board. 
-I started "A" at 1 because letter unlike numbers start at 1
-Will need to chabge letters to numbers for column and user .upper() so if the player types lowercase it will be changed to upper 
-"""
-
 #Constants to represent elements on the grid/board
 BOARD_SIZE_X = 9
 BOARD_SIZE_Y = 9
@@ -31,8 +14,6 @@ for item in SHIPS iterates over each ship type in the SHIPS dictionary.
 sum() checks the total space the ships add up to
 """
 
-
-
 print("Welcome to Battleships\n")
 
 
@@ -43,7 +24,7 @@ What would you like to do?
 1. Read Instructions
 2. Play Game
           """)
-    user_in = input('What would you like: ').lower().strip()
+    user_in = input('What would you like: \n').lower().strip()
     possible_answers = ['1', '2']
     if user_in in possible_answers:
         print(f'Thanks, you have chosen {user_in}!')
@@ -56,7 +37,7 @@ if menu_request == "1":
 else:
     pass
     
-user_name = input("What is your name: ")
+user_name = input("What is your name: \n")
 print(f"Hello {user_name}, are you ready to play?\n")
 
 def create_grid():
@@ -130,7 +111,7 @@ def player_turn(computer_board, player_tracking_board):
     player_turn = True
     while player_turn:
         print("Your turn:")
-        target = input("Enter target (e.g., A4): ").upper()
+        target = input("Enter target (e.g., A4): \n").upper()
         if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
             row = int(target[1])
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
