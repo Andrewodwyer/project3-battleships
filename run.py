@@ -1,8 +1,27 @@
-from random import randint #generate random ship orientation and placement
+import gspread
+from google.oauth2.service_account import Credentials
+import random #generate random ship orientation and placement
 
 #Constants to represent elements on the grid/board
+SCOPE = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive.file",
+    "https://www.googleapis.com/auth/drive"
+    ]
+
+CREDS = Credentials.from_service_account_file('creds.json')
+SCOPED_CREDS = CREDS.with_scopes(SCOPE)
+GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
+SHEET = GSPREAD_CLIENT.open('Battleships-project3')
+leaderboard = SHEET.worksheet('leaderboard')
+
+data = leaderboard.get_all_values()
+print(data)
+
 BOARD_SIZE_X = 9
 BOARD_SIZE_Y = 9
+LETTERS = "ABCDEFGHI"
+NUMBERS = "012345678"
 
 MISS_MARK = "O" # player misses, shown on computer board
 HIT_MARK = "X" # if correct guess, Board updates with hit
@@ -62,13 +81,13 @@ def print_board(grid):
     """
     print("  A B C D E F G H I")
     print(" +-----------------+")
-    for i in range(): #loop though 9 times
+    for i in range(BOARD_SIZE_X): #loop though 9 times
         row = '' # sting that stores the content of each row
-        for j in range(BOARD_SIZE_X): # nested loop for columns
+        for j in range(BOARD_SIZE_Y): # nested loop for columns
             row += grid[i][j] # this appends/add the value of the cell eg A0
-            if j < (BOARD_SIZE_X -1): # add '|' to inside columns only. only the first 8 cells
+            if j < 8: # add '|' to inside columns only. only the first 8 cells
                 row += '|'
-        print(i, row,)
+        print(i, row)
     print(" +-----------------+")
 
 def place_ships(grid):
