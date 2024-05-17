@@ -16,7 +16,7 @@ SHEET = GSPREAD_CLIENT.open('Battleships-project3')
 leaderboard = SHEET.worksheet('leaderboard')
 
 data = leaderboard.get_all_values()
-print(data)
+#print(data)
 
 BOARD_SIZE_X = 9
 BOARD_SIZE_Y = 9
