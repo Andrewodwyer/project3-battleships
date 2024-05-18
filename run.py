@@ -81,7 +81,7 @@ def print_board(grid):
 
     """
     print("  A B C D E F G H I")
-    print(" +-----------------+")
+    #print(" +-----------------+")
     for i in range(BOARD_SIZE_X): #loop though 9 times
         row = '' # sting that stores the content of each row
         for j in range(BOARD_SIZE_Y): # nested loop for columns
@@ -89,7 +89,7 @@ def print_board(grid):
             if j < 8: # add '|' to inside columns only. only the first 8 cells
                 row += '|'
         print(i, row)
-    print(" +-----------------+")
+    #print(" +-----------------+")
 
 def place_ships(grid):
     """
@@ -130,8 +130,8 @@ def player_turn(computer_board, player_tracking_board):
     """
     player_turn = True
     while player_turn:
-        print("Your turn:")
-        target = input("Enter target (e.g., A4): \n").upper()
+        #print("Your turn:")
+        target = input(f"Your turn. Enter target (e.g., A4): \n").upper()
         if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
             row = int(target[1])
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
@@ -167,7 +167,7 @@ def computer_turn(player_board, computer_tracking_board):
                 player_board[row][col] = 'X' #update player board with X
                 return 
             else:
-                print("Computer missed at", str(random_col) + str(row)) # else if ' ' 
+                print("Computer missed at", str(random_col) + str(row)\n) # else if ' ' 
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
                 player_board[row][col] = 'O' #update player board with 'O'
             break
