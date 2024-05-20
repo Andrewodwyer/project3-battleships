@@ -37,7 +37,7 @@ for item in SHIPS iterates over each ship type in the SHIPS dictionary.
 sum() checks the total space the ships add up to
 """
 
-tprint("Battleships 1980\n") #large title text
+tprint("Battleships") #large title text
 
 
 menu_request = ''
