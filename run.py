@@ -234,8 +234,8 @@ def main():
 
     play_game = True #game plays 
     while play_game:
-        print("\nPlayer's Tracking Board:")
-        print_board(player_tracking_board)
+        print("\nPlayer's Board:")
+        print_board(player_tracking_board, player_board)
         player_turn(computer_board, player_tracking_board) #computer_board and player_tracking_board are arguments so see if the boards have an 'X', 'O' or ' ' and instructions on what to do
         if check_game_over(computer_board): #computer_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS
             print(f"{user_name}, You win!")
