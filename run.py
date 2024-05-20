@@ -91,23 +91,28 @@ def create_grid():
     return grid
 
 
-def print_board(grid):
+def print_board(grid1, grid2):
     """
-    Takes the parameter of grid returned from create_grid()
+    Takes the parameter of grid1, grid2. It's called in main game and has arguments of player_tracking_board, player_board
     prints a header with letters, a frame top and bottom.
     prints rows numbered 0-8 and columns, seperated with a '|'. the '|' is a viual que of the cells
 
     """
-    print("  A B C D E F G H I")
-    #print(" +-----------------+")
-    for i in range(BOARD_SIZE_X): #loop though 9 times
-        row = '' # sting that stores the content of each row
-        for j in range(BOARD_SIZE_Y): # nested loop for columns
-            row += grid[i][j] # this appends/add the value of the cell eg A0
-            if j < 8: # add '|' to inside columns only. only the first 8 cells
-                row += '|'
-        print(i, row)
-    #print(" +-----------------+")
+    print("   Tracking Board      |       Ship position  ")
+    print("  A B C D E F G H I          A B C D E F G H I")
+    print(" +-----------------+       +-----------------+")
+    for i in range(BOARD_SIZE_X):
+        row1 = ''  # for first board
+        row2 = ''  # for second board
+        for j in range(BOARD_SIZE_Y):
+            row1 += grid1[i][j]
+            if j < 8:
+                row1 += '|'
+            row2 += grid2[i][j]
+            if j < 8:
+                row2 += '|'
+        print(f"{i} {row1}       {i} {row2}")
+    print(" +-----------------+       +-----------------+")
 
 def place_ships(grid):
     """
@@ -189,8 +194,7 @@ def computer_turn(player_board, computer_tracking_board):
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
                 player_board[row][col] = 'O' #update player board with 'O'
             break
-    print("Player's ship positions:")
-    print_board(player_board)
+
  
 
 def check_game_over(grid):
@@ -227,9 +231,6 @@ def main():
     print("Placing ships...")
     place_ships(player_board) #ships are placed in the player_board
     place_ships(computer_board) #ships are placed in the player_board
-
-    print("Player's ship positions:")
-    print_board(player_board) #player_board is printed to terminal
 
     play_game = True #game plays 
     while play_game:
