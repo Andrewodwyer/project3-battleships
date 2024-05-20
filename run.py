@@ -164,11 +164,11 @@ def player_turn(computer_board, player_tracking_board):
             if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
                 if computer_board[row][col] != ' ':
                     print(f"{Fore.WHITE + Back.RED}Hit, jolly good shot old chap!{Back.RESET}\n")
-                    player_tracking_board[row][col] = 'X'
+                    player_tracking_board[row][col] = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL
                     computer_board[row][col] = 'X'
                 else:
                     print(f"{Fore.WHITE + Back.BLUE}Miss, nothing but water!{Back.RESET}\n")
-                    player_tracking_board[row][col] = 'O'
+                    player_tracking_board[row][col] = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL
                 break #loop only breaks when it's a hit or miss (conditions for X or O)
             else:
                 print(f"{Back.WHITE}{Fore.BLACK}You've already fired at this location.")
@@ -190,12 +190,12 @@ def computer_turn(player_board, computer_tracking_board):
             if player_board[row][col] != ' ': #player_board position has to be ' ' otherwise it's a hit every time.
                 print(f"{Fore.WHITE + Back.RED}Computer hit at {str(random_col)}{str(row)}{Back.RESET}") # strings e.g "A""2"
                 computer_tracking_board[row][col] = 'X' #update computer tracking board with X
-                player_board[row][col] = 'X' #update player board with X
+                player_board[row][col] = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL #update player board with X
                 return 
             else:
                 print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n") # else if ' ' 
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
-                player_board[row][col] = 'O' #update player board with 'O'
+                player_board[row][col] = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL #update player board with 'O'
             break
 
  
