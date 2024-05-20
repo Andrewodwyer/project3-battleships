@@ -37,50 +37,51 @@ for item in SHIPS iterates over each ship type in the SHIPS dictionary.
 sum() checks the total space the ships add up to
 """
 
-tprint("Battleships") #large title text
+def battleships_intro():
 
+    tprint("Battleships") #large title text
 
-menu_request = ''
-while menu_request == '':
-    print("""
-Welcome to Battleships
-What would you like to do?
-1. Read Instructions
-2. Game information
-3. Play Game
-          """)
-    user_in = input('What would you like: ').lower().strip()
-    possible_answers = ['1', '2', '3']
-    if user_in in possible_answers:
-        print(f"Thanks, you have chosen {user_in}!")
-        menu_request = user_in
+    menu_request = ''
+    while menu_request == '':
+        print("""
+    Welcome to Battleships
+    What would you like to do?
+    1. Read Instructions
+    2. Game information
+    3. Play Game
+            """)
+        user_in = input('What would you like: ').lower().strip()
+        possible_answers = ['1', '2', '3']
+        if user_in in possible_answers:
+            print(f"Thanks, you have chosen {user_in}!")
+            menu_request = user_in
+        else:
+            print(F"{Fore.RED}No, you just need to input 1, 2 or 3 - there are no other options")
+
+    if menu_request == "1":
+        print("""
+    Battleships is a classic two-player game played on a grid.
+    You'll play against the computer, each having 5 ships. 
+    The first to hit all 5 ships is the winner. 
+    You will see 2 grids, first is your grid with ship placement and the second is the computers grid. 
+    The computers grid won't display their ship positions.
+    However it will be mark with an “X” if you get a hit or “O” if it't a miss.
+    Take a shot by entering coordinates (e.g., A1, B5) on the grid. 
+    The goal is to sink all of the opponent's ships before they sink yours.
+            """)
+    elif menu_request == "2":
+        print("""
+    Battleship is a strategy type guessing game for two players. 
+    It is played on a grid on which each player's fleet of warships are marked. 
+    The locations of the fleets are concealed from the other player. 
+    Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, 
+    and the objective of the game is to destroy the opposing player's fleet.
+            """)
     else:
-        print(F"{Fore.RED}No, you just need to input 1, 2 or 3 - there are no other options")
-
-if menu_request == "1":
-    print("""
-Battleships is a classic two-player game played on a grid.
-You'll play against the computer, each having 5 ships. 
-The first to hit all 5 ships is the winner. 
-You will see 2 grids, first is your grid with ship placement and the second is the computers grid. 
-The computers grid won't display their ship positions.
-However it will be mark with an “X” if you get a hit or “O” if it't a miss.
-Take a shot by entering coordinates (e.g., A1, B5) on the grid. 
-The goal is to sink all of the opponent's ships before they sink yours.
-        """)
-elif menu_request == "2":
-    print("""
-Battleship is a strategy type guessing game for two players. 
-It is played on a grid on which each player's fleet of warships are marked. 
-The locations of the fleets are concealed from the other player. 
-Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, 
-and the objective of the game is to destroy the opposing player's fleet.
-        """)
-else:
-    pass
-    
-user_name = input("What is your name: \n")
-print(f"Hello {user_name}, are you ready to play?\n")
+        pass
+        
+    user_name = input("What is your name: \n")
+    print(f"Hello {user_name}, are you ready to play?\n")
 
 def create_grid():
     """
@@ -227,6 +228,8 @@ def main():
     It prints 2 board to the terminal. 
     First, Player board with ship positions and second, players tracking board that shows hits or missed
     """
+
+    battleships_intro()
         
     player_board = create_grid()
     computer_board = create_grid()
