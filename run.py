@@ -4,6 +4,7 @@ import random #generate random ship orientation and placement
 import time #for delay in printing new boards after results
 from colorama import Fore, Back, Style, init 
 init(autoreset=True)
+from art import *
 
 #Constants to represent elements on the grid/board
 SCOPE = [
@@ -36,12 +37,13 @@ for item in SHIPS iterates over each ship type in the SHIPS dictionary.
 sum() checks the total space the ships add up to
 """
 
-print("Welcome to Battleships\n")
+tprint("Battleships 1980\n") #large title text
 
 
 menu_request = ''
 while menu_request == '':
     print("""
+Welcome to Battleships
 What would you like to do?
 1. Read Instructions
 2. Game information
