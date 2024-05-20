@@ -2,6 +2,8 @@ import gspread
 from google.oauth2.service_account import Credentials
 import random #generate random ship orientation and placement
 import time #for delay in printing new boards after results
+from colorama import Fore, Back, Style, init 
+init(autoreset=True)
 
 #Constants to represent elements on the grid/board
 SCOPE = [
@@ -48,10 +50,10 @@ What would you like to do?
     user_in = input('What would you like: ').lower().strip()
     possible_answers = ['1', '2', '3']
     if user_in in possible_answers:
-        print(f'Thanks, you have chosen {user_in}!')
+        print(f"Thanks, you have chosen {user_in}!")
         menu_request = user_in
     else:
-        print('No, you just need to input 1 or 2 - there are no other options')
+        print(F"{Fore.RED}No, you just need to input 1, 2 or 3 - there are no other options")
 
 if menu_request == "1":
     print("""
@@ -113,6 +115,7 @@ def print_board(grid1, grid2):
                 row2 += '|'
         print(f"{i} {row1}       {i} {row2}")
     print(" +-----------------+       +-----------------+")
+    print()
 
 def place_ships(grid):
     """
@@ -160,17 +163,17 @@ def player_turn(computer_board, player_tracking_board):
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
             if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
                 if computer_board[row][col] != ' ':
-                    print("Hit, jolly good shot old chap!")
+                    print(f"{Fore.WHITE + Back.RED}Hit, jolly good shot old chap!{Back.RESET}\n")
                     player_tracking_board[row][col] = 'X'
                     computer_board[row][col] = 'X'
                 else:
-                    print("Miss, nothing but water!")
+                    print(f"{Fore.WHITE + Back.BLUE}Miss, nothing but water!{Back.RESET}\n")
                     player_tracking_board[row][col] = 'O'
                 break #loop only breaks when it's a hit or miss (conditions for X or O)
             else:
-                print("You've already fired at this location.")
+                print(f"{Back.WHITE}{Fore.BLACK}You've already fired at this location.")
         else:
-            print("Invalid input. Please enter a valid target.")
+            print(f"{Fore.RED}Invalid input. Please enter a valid target.")
 
 def computer_turn(player_board, computer_tracking_board):
     """
@@ -185,12 +188,12 @@ def computer_turn(player_board, computer_tracking_board):
         col = ord(random_col) - ord('A') #ord() converts letters to numbers
         if computer_tracking_board[row][col] != 'X' and computer_tracking_board[row][col] != 'O': #checks if the cell is marked with an X for hit or O for miss
             if player_board[row][col] != ' ': #player_board position has to be ' ' otherwise it's a hit every time.
-                print("Computer hit at", str(random_col) + str(row)) # strings e.g "A""2"
+                print(f"{Fore.WHITE + Back.RED}Computer hit at {str(random_col)}{str(row)}{Back.RESET}") # strings e.g "A""2"
                 computer_tracking_board[row][col] = 'X' #update computer tracking board with X
                 player_board[row][col] = 'X' #update player board with X
                 return 
             else:
-                print(f"Computer missed at {str(random_col) + str(row)}\n") # else if ' ' 
+                print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n") # else if ' ' 
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
                 player_board[row][col] = 'O' #update player board with 'O'
             break
@@ -240,7 +243,7 @@ def main():
         if check_game_over(computer_board): #computer_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS
             print(f"{user_name}, You win!")
             break
-        time.sleep(1.5)
+        time.sleep(1)
         #print("\nPlayer's ship positions:")
         #print_board(player_board)
         computer_turn(player_board, computer_tracking_board)
