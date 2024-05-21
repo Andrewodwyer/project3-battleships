@@ -1,8 +1,11 @@
 import gspread
+"""
+google sheets
+"""
 from google.oauth2.service_account import Credentials
 import random #generate random ship orientation and placement
 import time #for delay in printing new boards after results
-from colorama import Fore, Back, Style, init 
+from colorama import Fore, Back, Style, init
 init(autoreset=True)
 from art import *
 
@@ -30,7 +33,7 @@ NUMBERS = "012345678"
 MISS_MARK = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL # player misses, shown on player board
 HIT_MARK = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL # player hits, shown on players tracking board
 SHIPS = {"aircraft_carrier":5, "battleship":4, "destroyer":3, "submarine":2, "cruiser":2}
-TOTAL_AREA_OF_ALL_SHIPS = sum(SHIPS[item] for item in SHIPS) 
+TOTAL_AREA_OF_ALL_SHIPS = sum(SHIPS[item] for item in SHIPS)
 """
 SHIPS[item] retrieves the length of each ship (the value).
 for item in SHIPS iterates over each ship type in the SHIPS dictionary.
@@ -38,6 +41,9 @@ sum() checks the total space the ships add up to
 """
 
 def battleships_intro():
+    """
+    into to the game with 3 options
+    """
 
     tprint("Battleships") #large title text
 
@@ -80,28 +86,25 @@ def battleships_intro():
             """)
     else:
         pass
-        
+
     user_name = input("What is your name: \n")
     print(f"Hello {user_name}, are you ready to play?\n")
 
 def create_grid():
     """
-    returns a grid that is 9x9 in size. using for loops to make 9 columns cells in 9 row lists
+    List Comprehension, Returns a 9x9 grid with each cell initialized to an empty space.
     """
-    grid = [] #make a grid list
-    for row in range(BOARD_SIZE_X):
-        new_row = [] # make row of 9
-        for col in range(BOARD_SIZE_Y):# Loop through columns
-            new_row.append(' ') # Add an empty space to each cell of the row
-        grid.append(new_row) #.append/add the row to the grid
-    return grid
+    return [[' ' for _ in range(BOARD_SIZE_Y)] for _ in range(BOARD_SIZE_X)]
+
 
 
 def print_board(grid1, grid2):
     """
-    Takes the parameter of grid1, grid2. It's called in main game and has arguments of player_tracking_board, player_board
+    Takes the parameter of grid1, grid2. It's called in main game 
+    and has arguments of player_tracking_board, player_board
     prints a header with letters, a frame top and bottom.
-    prints rows numbered 0-8 and columns, seperated with a '|'. the '|' is a viual que of the cells
+    prints rows numbered 0-8 and columns, seperated with 
+    a '|'. the '|' is a viual que of the cells
 
     """
     print("   Tracking Board      |       Ship position  ")
@@ -124,8 +127,10 @@ def print_board(grid1, grid2):
 def place_ships(grid):
     """
     places ships on the grid. To be called later for player_board and computer_board
-    SHIPS constant is =  a dictionary with ship types and their sizes. .items() gets the key.value and assigns them to ship_type (key), size(value)
-    in the for loop, a random direction is used with the function random.choice(), calling 'horizontal' or 'vertical'
+    SHIPS constant is =  a dictionary with ship types and their sizes. .items() gets 
+    the key.value and assigns them to ship_type (key), size(value)
+    in the for loop, a random direction is used with the function random.choice(), 
+    calling 'horizontal' or 'vertical'
     ships are placed in the grid area and only on empty spaces
     """
     for ship_type, size in SHIPS.items():
@@ -139,7 +144,7 @@ def place_ships(grid):
                         grid[row][col+j] = Back.WHITE + Style.NORMAL + ship_type[0].upper() + Style.RESET_ALL #color ship and first letter from name of ship
                     break # breaks when the random ships are places
             else: #if direction vertical at random.choice(). do the same thing as 'horizontal' if statement and loop
-                row = random.randint(0, (BOARD_SIZE_Y -1) - size) 
+                row = random.randint(0, (BOARD_SIZE_Y -1) - size)
                 col = random.randint(0, (BOARD_SIZE_Y -1))
                 if all(grid[row+i][col] == ' ' for i in range(size)):
                     for i in range(size):
@@ -195,14 +200,14 @@ def computer_turn(player_board, computer_tracking_board):
                 print(f"{Fore.WHITE + Back.RED}Computer hit at {str(random_col)}{str(row)}{Back.RESET}") # strings e.g "A""2"
                 computer_tracking_board[row][col] = 'X' #update computer tracking board with X
                 player_board[row][col] = HIT_MARK #update player board with a red background X
-                return 
+                return
             else:
-                print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n") # else if ' ' 
+                print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n") # else if ' '
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
                 player_board[row][col] = MISS_MARK #update player board with a blue background 'O'
             break
 
- 
+
 
 def check_game_over(grid):
     """
@@ -231,7 +236,7 @@ def main():
     """
 
     battleships_intro()
-        
+    
     player_board = create_grid()
     computer_board = create_grid()
     player_tracking_board = create_grid()
@@ -241,7 +246,7 @@ def main():
     place_ships(player_board) #ships are placed in the player_board
     place_ships(computer_board) #ships are placed in the player_board
 
-    play_game = True #game plays 
+    play_game = True #game plays
     while play_game:
         print("\nPlayer's Board:")
         print_board(player_tracking_board, player_board)
@@ -257,5 +262,5 @@ def main():
             print(f"Better Luck next time {user_name}, Computer wins!")
             break
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     main() #main is called directly
