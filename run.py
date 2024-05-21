@@ -27,8 +27,8 @@ BOARD_SIZE_Y = 9
 LETTERS = "ABCDEFGHI"
 NUMBERS = "012345678"
 
-MISS_MARK = "O" # player misses, shown on computer board
-HIT_MARK = "X" # if correct guess, Board updates with hit
+MISS_MARK = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL # player misses, shown on player board
+HIT_MARK = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL # player hits, shown on players tracking board
 SHIPS = {"aircraft_carrier":5, "battleship":4, "destroyer":3, "submarine":2, "cruiser":2}
 TOTAL_AREA_OF_ALL_SHIPS = sum(SHIPS[item] for item in SHIPS) 
 """
@@ -63,7 +63,8 @@ def battleships_intro():
     Battleships is a classic two-player game played on a grid.
     You'll play against the computer, each having 5 ships. 
     The first to hit all 5 ships is the winner. 
-    You will see 2 grids, first is your grid with ship placement and the second is the computers grid. 
+    You will see 2 grids, first is your grid with ship placement and the 
+    second is the computers grid. 
     The computers grid won't display their ship positions.
     However it will be mark with an “X” if you get a hit or “O” if it't a miss.
     Take a shot by entering coordinates (e.g., A1, B5) on the grid. 
@@ -135,14 +136,14 @@ def place_ships(grid):
                 col = random.randint(0, (BOARD_SIZE_X -1) - size)
                 if all(grid[row][col+j] == ' ' for j in range(size)): #checks if grid row and column coordinates are ' ' empty
                     for j in range(size):
-                        grid[row][col+j] = ship_type[0].upper() 
+                        grid[row][col+j] = ship_type[0].upper()
                     break # breaks when the random ships are places
             else: #if direction vertical at random.choice(). do the same thing as 'horizontal' if statement and loop
                 row = random.randint(0, (BOARD_SIZE_Y -1) - size) 
                 col = random.randint(0, (BOARD_SIZE_Y -1))
                 if all(grid[row+i][col] == ' ' for i in range(size)):
                     for i in range(size):
-                        grid[row+i][col] = ship_type[0].upper() #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
+                        grid[row+i][col] = ship_type[0].upper()  #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
                     break
 
 def player_turn(computer_board, player_tracking_board):
@@ -164,14 +165,14 @@ def player_turn(computer_board, player_tracking_board):
         if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
             row = int(target[1])
             col = ord(target[0]) - ord('A') #ord() converts letters to numbers
-            if player_tracking_board[row][col] != 'X' and player_tracking_board[row][col] != 'O':
+            if player_tracking_board[row][col] != HIT_MARK and player_tracking_board[row][col] != MISS_MARK:
                 if computer_board[row][col] != ' ':
                     print(f"{Fore.WHITE + Back.RED}Hit, jolly good shot old chap!{Back.RESET}\n")
-                    player_tracking_board[row][col] = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL
+                    player_tracking_board[row][col] = HIT_MARK # red X
                     computer_board[row][col] = 'X'
                 else:
                     print(f"{Fore.WHITE + Back.BLUE}Miss, nothing but water!{Back.RESET}\n")
-                    player_tracking_board[row][col] = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL
+                    player_tracking_board[row][col] = MISS_MARK # Blue O
                 break #loop only breaks when it's a hit or miss (conditions for X or O)
             else:
                 print(f"{Back.WHITE}{Fore.BLACK}You've already fired at this location.")
@@ -193,12 +194,12 @@ def computer_turn(player_board, computer_tracking_board):
             if player_board[row][col] != ' ': #player_board position has to be ' ' otherwise it's a hit every time.
                 print(f"{Fore.WHITE + Back.RED}Computer hit at {str(random_col)}{str(row)}{Back.RESET}") # strings e.g "A""2"
                 computer_tracking_board[row][col] = 'X' #update computer tracking board with X
-                player_board[row][col] = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL #update player board with X
+                player_board[row][col] = HIT_MARK #update player board with a red background X
                 return 
             else:
                 print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n") # else if ' ' 
                 computer_tracking_board[row][col] = 'O' #update computer tracking board with a 'O'
-                player_board[row][col] = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL #update player board with 'O'
+                player_board[row][col] = MISS_MARK #update player board with a blue background 'O'
             break
 
  
