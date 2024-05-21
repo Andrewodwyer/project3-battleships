@@ -136,14 +136,14 @@ def place_ships(grid):
                 col = random.randint(0, (BOARD_SIZE_X -1) - size)
                 if all(grid[row][col+j] == ' ' for j in range(size)): #checks if grid row and column coordinates are ' ' empty
                     for j in range(size):
-                        grid[row][col+j] = Fore.WHITE + Style.BRIGHT + Back.WHITE + Style.NORMAL + ship_type[0].upper() + Style.RESET_ALL #color ship and first letter from name of ship
+                        grid[row][col+j] = Back.WHITE + Style.NORMAL + ship_type[0].upper() + Style.RESET_ALL #color ship and first letter from name of ship
                     break # breaks when the random ships are places
             else: #if direction vertical at random.choice(). do the same thing as 'horizontal' if statement and loop
                 row = random.randint(0, (BOARD_SIZE_Y -1) - size) 
                 col = random.randint(0, (BOARD_SIZE_Y -1))
                 if all(grid[row+i][col] == ' ' for i in range(size)):
                     for i in range(size):
-                        grid[row+i][col] = Fore.WHITE + Style.BRIGHT + Back.WHITE + Style.NORMAL + ship_type[0].upper() + Style.RESET_ALL  #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
+                        grid[row+i][col] = Back.WHITE + Style.NORMAL + ship_type[0].upper() + Style.RESET_ALL  #ship_type[0].upper() takes the first letter of the ship type and makes the letter uppercase
                     break
 
 def player_turn(computer_board, player_tracking_board):
