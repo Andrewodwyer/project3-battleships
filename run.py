@@ -1,5 +1,6 @@
 # Text style
 from art import tprint
+# 
 import gspread
 """
 google sheets
@@ -243,25 +244,26 @@ def computer_turn(player_board, computer_shot):
         # r_c = random choice of the letters in constant LETTERS
         r_c = LETTERS[random.randint(0, BOARD_SIZE_X - 1)]
         # ord() converts letters to numbers
-        col = ord(r_c) - ord('A')
+        # c is col
+        c = ord(r_c) - ord('A')
         # checks if the cell is marked with an X for hit or O for miss
-        if computer_shot[row][col] != 'X' and computer_shot[row][col] != 'O':
+        if computer_shot[r][c] != 'X' and computer_shot[r][c] != 'O':
             # player_board position has to be ' ' otherwise it's a hit
-            if player_board[row][col] != ' ':
+            if player_board[r][c] != ' ':
                 # strings e.g "A""2"
-                print(f"{Fore.WHITE + Back.RED}Computer hit at {str(r_c)}{str(row)}{BR}")
+                print(f"{FW + BR}Computer hit at {str(r_c)}{str(r)}{BR}")
                 # update computer tracking board with X
-                computer_shot[row][col] = 'X'
+                computer_shot[r][c] = 'X'
                 # update player board with a red background X
-                player_board[row][col] = HIT_MRK
+                player_board[r][c] = HIT_MRK
                 return
             else:
                 # else ' ' (empty)
-                print(f"{FW + BB}Computer missed at {str(r_c)}{str(row)}{BR}\n")
+                print(f"{FW + BB}Computer missed at {str(r_c)}{str(r)}{BR}")
                 # update computer tracking board with a 'O'
-                computer_shot[row][col] = 'O'
+                computer_shot[r][c] = 'O'
                 # update player board with a blue background 'O'
-                player_board[row][col] = MISS_MRK
+                player_board[r][c] = MISS_MRK
             break
 
 
