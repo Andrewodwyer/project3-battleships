@@ -35,9 +35,9 @@ BOARD_SIZE_Y = 9
 LETTERS = "ABCDEFGHI"
 NUMBERS = "012345678"
 # player misses, shown on player board
-MISS_MARK = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL
+MISS_MRK = Fore.WHITE + Back.BLUE + 'O' + Style.RESET_ALL
 # player hits, shown on players tracking board
-HIT_MARK = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL
+HIT_MRK = Fore.WHITE + Back.RED + 'X' + Style.RESET_ALL
 SHIPS = {"aircraft_carrier": 5,
          "battleship": 4,
          "destroyer": 3,
@@ -127,7 +127,7 @@ def create_grid():
 def print_board(grid1, grid2):
     """
     Takes the parameter of grid1, grid2. It's called in main game
-    and has arguments of player_tracking_board, player_board
+    and has arguments of player_shot, player_board
     prints a header with letters, a frame top and bottom.
     prints rows numbered 0-8 and columns, seperated with
     a '|'. the '|' is a viual que of the cells
@@ -189,7 +189,7 @@ def place_ships(grid):
                     placed = True
 
 
-def player_turn(computer_board, player_tracking_board):
+def player_turn(computer_board, player_shot):
     """
     players chooses a row and column e.g A4
     Check to see if length is 2, first (0) is a letter, second(1) is a number
@@ -207,20 +207,20 @@ def player_turn(computer_board, player_tracking_board):
         # print("Your turn:")
         target = input(f"Your turn. Enter target (e.g., A4): \n").upper()
         if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
-            row = int(target[1])
+            r = int(target[1])
             # ord() converts letters to numbers
-            col = ord(target[0]) - ord('A')
-            if player_tracking_board[row][col] != HIT_MARK and player_tracking_board[row][col] != MISS_MARK:
-                if computer_board[row][col] != ' ':
+            c = ord(target[0]) - ord('A')
+            if player_shot[r][c] != HIT_MRK and player_shot[r][c] != MISS_MRK:
+                if computer_board[r][c] != ' ':
                     print(f"{FW + BR}Hit, jolly good shot old chap!{RSA}\n")
-                    # HIT_MARK = red X
-                    player_tracking_board[row][col] = HIT_MARK
-                    computer_board[row][col] = 'X'
+                    # HIT_MRK = red X
+                    player_shot[r][c] = HIT_MRK
+                    computer_board[r][c] = 'X'
                 else:
                     print(f"{FW + BB}Miss, nothing but water!{RSA}\n")
-                    # MISS_MARK = Blue O
-                    player_tracking_board[row][col] = MISS_MARK
-                #loop only breaks when it's a hit or miss (conditions for X or O)
+                    # MISS_MRK = Blue O
+                    player_shot[r][c] = MISS_MRK
+                # loop only breaks when it's a hit or miss(X or O)
                 break
             else:
                 print(f"{BW}{FB}You've already fired at this location.")
@@ -228,38 +228,40 @@ def player_turn(computer_board, player_tracking_board):
             print(f"{Fore.RED}Invalid input. Please enter a valid target.")
 
 
-def computer_turn(player_board, computer_tracking_board):
+def computer_turn(player_board, computer_shot):
     """
     computer chooses a random number for row and random letter for column.
-    like players_turn, the letter has to be converted to a number for the position using ord()
-    we return the col letter and row number to the terminal and say if it hit or miss
+    like players_turn, the letter has to be converted to a number for the
+    position using ord(). we return the col letter and row number to the
+    terminal and say if it hit or miss
     """
     computer_turn = True
     while computer_turn:
-        #BOARD_SIZE_X constant is 9, we -1 as the row starts at 0
-        row = random.randint(0, (BOARD_SIZE_X -1))
-        #random choice of the letters in constant LETTERS
-        random_col = LETTERS[random.randint(0, BOARD_SIZE_X -1)]
-        #ord() converts letters to numbers
-        col = ord(random_col) - ord('A')
-        #checks if the cell is marked with an X for hit or O for miss
-        if computer_tracking_board[row][col] != 'X' and computer_tracking_board[row][col] != 'O':
-            #player_board position has to be ' ' otherwise it's a hit every time.
+        # r is a row
+        # BOARD_SIZE_X constant is 9, we -1 as the row starts at 0
+        r = random.randint(0, (BOARD_SIZE_X - 1))
+        # r_c = random choice of the letters in constant LETTERS
+        r_c = LETTERS[random.randint(0, BOARD_SIZE_X - 1)]
+        # ord() converts letters to numbers
+        col = ord(r_c) - ord('A')
+        # checks if the cell is marked with an X for hit or O for miss
+        if computer_shot[row][col] != 'X' and computer_shot[row][col] != 'O':
+            # player_board position has to be ' ' otherwise it's a hit
             if player_board[row][col] != ' ':
                 # strings e.g "A""2"
-                print(f"{Fore.WHITE + Back.RED}Computer hit at {str(random_col)}{str(row)}{Back.RESET}")
-                #update computer tracking board with X
-                computer_tracking_board[row][col] = 'X'
-                #update player board with a red background X
-                player_board[row][col] = HIT_MARK
+                print(f"{Fore.WHITE + Back.RED}Computer hit at {str(r_c)}{str(row)}{BR}")
+                # update computer tracking board with X
+                computer_shot[row][col] = 'X'
+                # update player board with a red background X
+                player_board[row][col] = HIT_MRK
                 return
             else:
                 # else ' ' (empty)
-                print(f"{Fore.WHITE + Back.BLUE}Computer missed at {str(random_col)}{str(row)}{Back.RESET}\n")
-                #update computer tracking board with a 'O'
-                computer_tracking_board[row][col] = 'O'
-                #update player board with a blue background 'O'
-                player_board[row][col] = MISS_MARK
+                print(f"{FW + BB}Computer missed at {str(r_c)}{str(row)}{BR}\n")
+                # update computer tracking board with a 'O'
+                computer_shot[row][col] = 'O'
+                # update player board with a blue background 'O'
+                player_board[row][col] = MISS_MRK
             break
 
 
@@ -275,7 +277,7 @@ def check_game_over(grid):
             # "X" represents a sunk ship
             if cell == "X":
                 score += 1
-    #the for loop sum() that checks the total space the ships add up too
+    # the for loop sum() that checks the total space the ships add up too
     if score == TOTAL_AREA_OF_ALL_SHIPS:
         # All ships are sunk
         return True
@@ -286,20 +288,23 @@ def check_game_over(grid):
 
 def main():
     """
-    This is the main game run function. It calls for 4 boards. 2 for the player and 2 for the computer.
+    This is the main game run function. It calls for 4 boards.
+    2 for the player and 2 for the computer.
     player_board has the players ships placed on it.
     computer_board has the computer ships placed on it
-    player_tracking_board has the positions of where they have fired. same with computer_tracking_board
-    It prints 2 board to the terminal. 
-    First, Player board with ship positions and second, players tracking board that shows hits or missed
+    player_shot has the positions of where they
+    have fired. same with computer_shot
+    It prints 2 board to the terminal.
+    First, Player board with ship positions and second,
+    players tracking board that shows hits or missed
     """
 
     user_name = battleships_intro()
-    
+
     player_board = create_grid()
     computer_board = create_grid()
-    player_tracking_board = create_grid()
-    computer_tracking_board = create_grid()
+    player_shot = create_grid()
+    computer_shot = create_grid()
 
     print("Placing ships...")
     # ships are placed in the player_board
@@ -311,20 +316,26 @@ def main():
     play_game = True
     while play_game:
         print("\nPlayer's Board:")
-        print_board(player_tracking_board, player_board)
-        # computer_board and player_tracking_board are arguments. check 'X', 'O' or ' ' & instructions on what to do
-        player_turn(computer_board, player_tracking_board)
-        # computer_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS
+        print_board(player_shot, player_board)
+        # computer_board and player_shot are arguments.
+        # check 'X', 'O' or ' ' & instructions on what to do
+        player_turn(computer_board, player_shot)
+        # computer_board is an argument, check score == TOTAL_AREA_OF_ALL_SHIPS
         if check_game_over(computer_board):
             print(f"{user_name}, You win!")
             break
         time.sleep(1)
-        computer_turn(player_board, computer_tracking_board)
-        # player_board is an argument to see if score == TOTAL_AREA_OF_ALL_SHIPS.
-        # player_board is the one with players ship positions, so if they're all hit, the computer wins
+        computer_turn(player_board, computer_shot)
+        # player_board is an argument, check score == TOTAL_AREA_OF_ALL_SHIPS
+        # player_board is the one with players ship positions
+        # if they're all hit, the computer wins
         if check_game_over(player_board):
             print(f"Better Luck next time {user_name}, Computer wins!")
             break
 
+
 if __name__ == "__main__":
-    main() # main is called directly
+    main()
+    """
+    main is called directly
+    """
