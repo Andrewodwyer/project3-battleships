@@ -70,6 +70,7 @@ def battleships_intro():
     tprint("Battleships")
     print("Welcome to Battleships")
     menu_request = ''
+    # menu_request will keep being displayed until 3 is selected
     while menu_request != '3':
         print("""
     What would you like to do?
@@ -108,6 +109,7 @@ def battleships_intro():
             print(f"{Fore.RED}No, you just need to input 1, 2, or 3{SRA}")
 
     user_name = input("What is your name: \n").strip()
+    # no or empty input gives invalid message
     while user_name == '':
         user_name = input("Invalid! What is your name: \n").strip()
     print(f"Hello {user_name}, are you ready to play?\n")
