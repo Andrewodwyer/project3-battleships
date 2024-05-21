@@ -1,6 +1,6 @@
 # Text style
 from art import tprint
-# 
+# google sheets
 import gspread
 """
 google sheets
@@ -46,7 +46,7 @@ SHIPS = {"aircraft_carrier": 5,
          "cruiser": 2}
 TOTAL_AREA_OF_ALL_SHIPS = sum(SHIPS[item] for item in SHIPS)
 # Colorama color and style
-RSA = Style.RESET_ALL
+SRA = Style.RESET_ALL
 BW = Back.WHITE
 SN = Style.NORMAL
 FW = Fore.WHITE
@@ -64,15 +64,14 @@ sum() checks the total space the ships add up to
 
 def battleships_intro():
     """
-    into to the game with 3 options
+    Intro to the game with 3 options
     """
     # large title text
     tprint("Battleships")
-
+    print("Welcome to Battleships")
     menu_request = ''
-    while menu_request == '':
+    while menu_request != '3':
         print("""
-    Welcome to Battleships
     What would you like to do?
     1. Read Instructions
     2. Game information
@@ -83,32 +82,30 @@ def battleships_intro():
         if user_in in possible_answers:
             print(f"Thanks, you have chosen {user_in}!")
             menu_request = user_in
+            if menu_request == '1':
+                print("""
+            Battleships is a classic two-player game played on a grid.
+            You'll play against the computer, each having 5 ships.
+            The first to hit all 5 ships is the winner.
+            You will see 2 grids, first is your grid with ship placement and
+            the second is the computers grid.
+            The computers grid won't display their ship positions.
+            However it will be marked with an “X” if you get a hit
+            or “O” if it's a miss. Take a shot by entering coordinates
+            (e.g., A1, B5) on the grid. The goal is to sink all of the
+            opponent's ships before they sink yours.
+                """)
+            elif menu_request == '2':
+                print("""
+            Battleship is a strategy type guessing game for two players.
+            It is played on a grid on which each player's fleet of warships
+            are marked. The locations of the fleets are concealed from the
+            other player. Players alternate turns taking shots at coordinates
+            (e.g. A1, B5) at the other player's ships, and the objective of
+            the game is to destroy the opposing player's fleet.
+                """)
         else:
-            print(f"{Fore.RED}No, you just need to input 1, 2 or 3")
-
-    if menu_request == "1":
-        print("""
-    Battleships is a classic two-player game played on a grid.
-    You'll play against the computer, each having 5 ships.
-    The first to hit all 5 ships is the winner.
-    You will see 2 grids, first is your grid with ship placement and the
-    second is the computers grid.
-    The computers grid won't display their ship positions.
-    However it will be mark with an “X” if you get a hit or “O” if it't a miss.
-    Take a shot by entering coordinates (e.g., A1, B5) on the grid.
-    The goal is to sink all of the opponent's ships before they sink yours.
-            """)
-    elif menu_request == "2":
-        print("""
-    Battleship is a strategy type guessing game for two players.
-    It is played on a grid on which each player's fleet of warships are marked.
-    The locations of the fleets are concealed from the other player.
-    Players alternate turns taking shots at coordinates (e.g. A1, B5) at the
-    other player's ships, and the objective of the game is to destroy the
-    opposing player's fleet.
-            """)
-    else:
-        pass
+            print(f"{Fore.RED}No, you just need to input 1, 2, or 3{SRA}")
 
     user_name = input("What is your name: \n").strip()
     while user_name == '':
@@ -175,7 +172,7 @@ def place_ships(grid):
                 if all(grid[row][col + j] == ' ' for j in range(size)):
                     for j in range(size):
                         # Color ship and first letter from name of ship
-                        grid[row][col + j] = BW+SN + ship_type[0].upper()+RSA
+                        grid[row][col + j] = BW+SN + ship_type[0].upper()+SRA
                     # Successfully placed the ship
                     placed = True
             # If direction is vertical
@@ -185,7 +182,7 @@ def place_ships(grid):
                 if all(grid[row + i][col] == ' ' for i in range(size)):
                     for i in range(size):
                         # Color ship and first letter from name of ship
-                        grid[row + i][col] = BW+SN + ship_type[0].upper()+RSA
+                        grid[row + i][col] = BW+SN + ship_type[0].upper()+SRA
                     # Successfully placed the ship
                     placed = True
 
@@ -213,12 +210,12 @@ def player_turn(computer_board, player_shot):
             c = ord(target[0]) - ord('A')
             if player_shot[r][c] != HIT_MRK and player_shot[r][c] != MISS_MRK:
                 if computer_board[r][c] != ' ':
-                    print(f"{FW + BR}Hit, jolly good shot old chap!{RSA}\n")
+                    print(f"{FW + BR}Hit, jolly good shot old chap!{SRA}\n")
                     # HIT_MRK = red X
                     player_shot[r][c] = HIT_MRK
                     computer_board[r][c] = 'X'
                 else:
-                    print(f"{FW + BB}Miss, nothing but water!{RSA}\n")
+                    print(f"{FW + BB}Miss, nothing but water!{SRA}\n")
                     # MISS_MRK = Blue O
                     player_shot[r][c] = MISS_MRK
                 # loop only breaks when it's a hit or miss(X or O)
