@@ -94,7 +94,7 @@ def create_grid():
     """
     List Comprehension, Returns a 9x9 grid with each cell initialized to an empty space.
     """
-    return [[' ' for _ in range(BOARD_SIZE_Y)] for _ in range(BOARD_SIZE_X)]
+    return [[' ' for y in range(BOARD_SIZE_Y)] for x in range(BOARD_SIZE_X)]
 
 
 
