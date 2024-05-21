@@ -1,32 +1,20 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Battleships
 
-Welcome,
+Battleships is a terminal-based python game in which the player and the computer take turns attacking each others ships on selected co-ordinates.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
 
-## Reminders
+## Live Game
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+The live game can be seen here:
+https://battleship-project3-a-133f293668e9.herokuapp.com/
 
-## Creating the Heroku app
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+## Research
+Research:
+I got the information on the game from https://en.wikipedia.org/wiki/Battleship_(game) and https://battleship.fandom.com/wiki/Battleship_(game)
 
-1. `heroku/python`
-2. `heroku/nodejs`
+1. Read Instructions
+Battleships is a classic two-player. You will play the computer and each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. You will see 2 grids, a tracking board and a ships position board. Both boards update with a ‘X’ for a hit and a ‘O’ for a miss. The tracking board shows if you hit the computer ship and the ship position board will show if the computer has hit or missed your ship. 
+Players take turns to try to guess the locations of the other player's ships by calling out coordinates (e.g., A3, B7) on the grid. The goal is to sink all of the opponent's ships before they sink yours.
+2. Battleship is a strategy type guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
