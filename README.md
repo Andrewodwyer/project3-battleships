@@ -61,16 +61,17 @@ The chart was a referance when writing the code.
 
 - Function 7, main. 
     - 1, intro
-    - 2, 4 board are created to track hit and miss. 
-    - 3, Place ship function is called for player board and computer board.
-    - 4, while play_game is true, do the following
-	    - print the board for the player to see, player_shot (tracking board) and player_board (ship position).
-	    - player turn and update hit and miss
-	    - check game over on on computer board. if so you win
-	    - time.sleep(1) 1 second before moving on to computers turn
-	    - Computers turn and update hit and miss
-	    - check game over on on player board. if so you loose
-
+        - 2, 4 board are created to track hit and miss. 
+        - 3, Place ship function is called for player board and computer board.
+        - 4, while play_game is true, do the following
+            - print the board for the player to see, player_shot (tracking board) and player_board (ship position).
+            - player turn and update hit and miss
+            - check game over on on computer board. if so you win
+            - time.sleep(1) 1 second before moving on to computers turn
+            - Computers turn and update hit and miss
+            - check game over on player board. if so you loose
+            - break loop
+- Option to play again when game is over
 
 # UX Design
 
