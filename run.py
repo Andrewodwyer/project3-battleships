@@ -112,7 +112,8 @@ def battleships_intro():
     user_name = input("What is your name: \n").strip()
     # no or empty input gives invalid message
     while user_name == '':
-        user_name = input(f"{FR}Invalid! What is your name: {SRA}").strip()
+        #.strip takes out the empty space
+        user_name = input(f"{FR}Invalid!{SRA} What is your name: \n").strip()
     print(f"Hello {user_name}, are you ready to play?\n")
     return user_name
 
