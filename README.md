@@ -57,13 +57,14 @@ The chart was a referance when writing the code.
 
 - Function 6, check game over.
     - The counter starts at 0 and when it reaches the constant of TOTAL_AREA_OF_ALL_SHIPS (sum of all ships) the game finishes.
+        - To get the total number of spaces the 5 battleships took up. I placed the ships in a dictionary with their ship names and the value of their spaces. Using list comprehension I got the integer for each ship, summed those values and got the TOTAL_AREA_OF_ALL_SHIPS which I used in check_game_over. score is 0, if score == TOTAL_AREA_OF_ALL_SHIPS, return true. This check_game_over() was used to check player and computer after each turn. 
 
 - Function 7, main. 
     - 1, intro
     - 2, 4 board are created to track hit and miss. 
     - 3, Place ship function is called for player board and computer board.
     - 4, while play_game is true, do the following
-	    - print the board for the player to see, player_shot (tracking board) and player_board (ship 	position).
+	    - print the board for the player to see, player_shot (tracking board) and player_board (ship position).
 	    - player turn and update hit and miss
 	    - check game over on on computer board. if so you win
 	    - time.sleep(1) 1 second before moving on to computers turn
@@ -91,6 +92,10 @@ The chart was a referance when writing the code.
     - After player shot and received the information on whether it was a hit or miss, I wanted a delay of 1 second so the player could take it in before been distracted by the to grids again.
     ![time.sleep(1)](images/time_sleep.png)
 
+- Game Board design:
+    - The player tracking grid and the player ship positions were on top of each other initially, making it hard to see without scrolling up. In order to fix this I placed 2 grids side by side in the print_board function and gave it parameters for 2 boards, the tracking board and the players ship positions.
+    This function is called in the main game and is given the arguments, player_tracking_board and player_board to print these boards to the terminal
+
 ## Manual Testing
 
 - Game loads with link
@@ -100,12 +105,29 @@ The chart was a referance when writing the code.
     - Game starts when input is 3
     - When input is anything other then 1,2,3. an error message is printed. 3 options appear again
     ![error message](images/input_error_intro.png)
-- Name input: 
+- Name input: When nothing is added is displays an Invalid message and asks to input again
+    ![name empty](images/empty_input_for_name.png)
+- Co-ordinate input error: when the input length isn't 2 and isn't 0-8 for row and a-i for column
+    ![Co-ordinate input error](images/co-ordinates_not_valid.png)
+
+- Everything works correctly after manual testing
 
 ## Automated Testing
 
 - The code was passed through the Code Institute Python Linter without any errors
 ![Screenshot of tezt results](images/ci_python_linter.png)
+
+## Bugs Fixed
+- I used (0, (BOARD_SIZE_X -1)) in placing the ships on the board. BOARD_SIZE_X = 9 so I needed to subtract 1 to make it fit into the board. Grid size starts at 0 not 1.
+- In the computer_turn function, I had checked if the computer_tracking_board didn’t have a hit or miss (‘X’ or ‘O’) but I didn’t have an if statement to check if player_board’s position was ‘ ‘. Without this statement, the computer would get a hit on any cell.
+- Player_turn() not showing the outer else message of “You’ve already fired at this location”. This is because I changed the “X” to have a red background and the “O” to have a blue background. Because of the difference in colour the outer if statement didn’t recognise the printed coloured cell. To make this work, I had to update the outer if statement with the colorama style too.
+- Colorama making code too long: When using CI Linter, the code was too long in areas I had used colorama. To resolve this I made constants of the different colour options and only used the first initials. This made for shorter code.
+
+
+## Code for later changes
+- More ships: I created a constant that added up the value(size) of each ship. If the number of ships increased the TOTAL_AREA_OF_ALL_SHIPS
+would be updated and the check_game_over() would still work without changes.
+
 
 ## Deployment
 
@@ -114,11 +136,11 @@ The chart was a referance when writing the code.
     - Input a name for the app
     - Select Europe for the region
     - Press the button Create app
-    - Next choose "Settings" from the tab above
+    - Next choose "Settings" from the nav bar above
     - Click "Reveal Config Vars
     - Input CREDS and your file name
     - Below this you'll "Add buildpack", heroku/python first and heroku/nodejs second. Make sure it is in this order.
-    - From the tabs above, select "Deploy"
+    - From the nav bar above, select "Deploy"
     - Select "GitHub"
     - Select the "Connect to GitHub" button
     - Find your GitHub repository with the search bar and press connect
