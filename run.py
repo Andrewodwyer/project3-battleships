@@ -86,13 +86,13 @@ def battleships_intro():
             if menu_request == '1':
                 print("""
             Battleships is a classic two-player game played on a grid.
-            You'll play against the computer, each having 5 ships.
-            The first to hit all 5 ships is the winner.
-            You will see 2 grids, first is your grid with ship placement and
-            the second is the computers grid.
-            The computers grid won't display their ship positions.
-            However it will be marked with an “X” if you get a hit
-            or “O” if it's a miss. Take a shot by entering coordinates
+            You'll play against the computer, each having 5 ships or
+            varying sizes. The first to hit all 5 ships is the winner.
+            You will see 2 grids, a tracking board and a ships position
+            board. Both boards update with a 'X' for a hit and a 'O'
+            for a miss. The tracking board shows if you hit the computer
+            ship. The ship position board will show if the computer has
+            hit or missed your ship. Take a shot by entering coordinates
             (e.g., A1, B5) on the grid. The goal is to sink all of the
             opponent's ships before they sink yours.
                 """)
@@ -129,7 +129,7 @@ def print_board(grid1, grid2):
     Takes the parameter of grid1, grid2. It's called in main game
     and has arguments of player_shot, player_board
     prints a header with letters, a frame top and bottom.
-    prints rows numbered 0-8 and columns, seperated with
+    prints rows numbered 0-8 and columns, separated with
     a '|'. the '|' is a viual que of the cells
 
     """
