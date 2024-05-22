@@ -13,12 +13,12 @@ https://battleship-project3-a-133f293668e9.herokuapp.com/
 
 I got the information on the game from https://en.wikipedia.org/wiki/Battleship_(game) and https://battleship.fandom.com/wiki/Battleship_(game)
 
-### 1. Read Instructions
-Battleships is a classic two-player. You will play the computer and each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. You will see 2 grids, a tracking board and a ships position board. Both boards update with a ‘X’ for a hit and a ‘O’ for a miss. The tracking board shows if you hit the computer ship. The ship position board will show if the computer has hit or missed your ship. 
-Players take turns to try to guess the locations of the other player's ships by calling out coordinates (e.g., A3, B7) on the grid. The goal is to sink all of the opponent's ships before they sink yours.
+- 1. Read Instructions
+    - Battleships is a classic two-player. You will play the computer and each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. You will see 2 grids, a tracking board and a ships position board. Both boards update with a ‘X’ for a hit and a ‘O’ for a miss. The tracking board shows if you hit the computer ship. The ship position board will show if the computer has hit or missed your ship. 
+    Players take turns to try to guess the locations of the other player's ships by calling out coordinates (e.g., A3, B7) on the grid. The goal is to sink all of the opponent's ships before they sink yours.
 
-### 2. Game Information
-Battleship is a strategy type guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
+- 2. Game Information
+    - Battleship is a strategy type guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
 ## Design
 I used Lucidchats to design a flowchart to map out how the game would operate. [Lucidchart](https://www.lucidchart.com/)
@@ -71,3 +71,22 @@ The chart was a referance when writing the code.
 	    - check game over on on player board. if so you loose
 
 
+# UX Design
+
+- Intro to the game.
+    - [ASCII art](https://pypi.org/project/art/)
+    I used ASCII art to print the title of the game “Battleship”
+    ![Battleship ASCII art](images/intro_page.png)
+
+- Colours within the game play
+    - [Colorama](https://pypi.org/project/colorama/)
+    Colorama was used a number of times for UX design
+    - Error text red, indicating there was an error 
+    - Hit or Miss. I used a red background for a hit and a blue background for a miss, for both the tracking boards (showing where the played had shot) and player ship positions (showing if the computer had hit the players ship). 
+    - Red background with an ‘X’ for a hit or blue background with a ‘O’ for miss. 
+    - Text for hit and miss. I used the same red and blue backgrounds for the text that was printed to the terminal after the players turn and computers turn
+    ![hit, miss and ship colour](images/game_play.png)
+
+- time.sleep()
+    - After player shot and received the information on whether it was a hit or miss, I wanted a delay of 1 second so the player could take it in before been distracted by the to grids again.
+    ![time.sleep(1)](images/time_sleep.png)
