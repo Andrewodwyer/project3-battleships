@@ -125,8 +125,10 @@ The chart was a referance when writing the code.
 
 
 ## Code for later changes
+
 - More ships: I created a constant that added up the value(size) of each ship. If the number of ships increased the TOTAL_AREA_OF_ALL_SHIPS
 would be updated and the check_game_over() would still work without changes.
+- Board size: a constant was given to board size. This value could be updated at a later date. BOARD_SIZE_X & BOARD_SIZE_Y
 
 
 ## Deployment
@@ -147,20 +149,21 @@ would be updated and the check_game_over() would still work without changes.
     - Finally click "Deploy Branch"
 
 ## Credits and resources 
+
     - Code institute: Python code and walk-through project 
     - Mentor Support: Spencer Barriball
     - Tutor Support: Tutors at Code institute
     - Random randint() function in Python: [Random function](https://www.geeksforgeeks.org/python-randint-function/)
-    - [string .join()](https://www.geeksforgeeks.org/python-string-join-method/) 
-    - [W3schools](https://www.w3schools.com/python/ref_string_join.asp)
-    - W3schools [.strip()](https://www.w3schools.com/python/ref_string_strip.asp) takes out any space before or after.
-    - W3schools [.items()](https://www.w3schools.com/python/ref_dictionary_items.asp) view object, key-value pairs
-    - W3school [.ord()](https://www.w3schools.com/python/ref_func_ord.asp) return the number that represents the letter
+    - Geeksforgeeks: [string .join()](https://www.geeksforgeeks.org/python-string-join-method/) 
+    - String .join: [W3schools](https://www.w3schools.com/python/ref_string_join.asp)
+    - W3schools .strip: [.strip()](https://www.w3schools.com/python/ref_string_strip.asp) takes out any space before or after.
+    - W3schools .items: [.items()](https://www.w3schools.com/python/ref_dictionary_items.asp) view object, key-value pairs
+    - W3school .ord: [.ord()](https://www.w3schools.com/python/ref_func_ord.asp) return the number that represents the letter
     - realpython.com how to add delay in your code. import time,  running  time.sleep()
-    - Caleb Curry [python](https://www.youtube.com/watch?v=s3IvdkCq2_c&list=PLM5gEw77Ulp6NS27tsxG82WYwFzqP93nh&index=7)
-    - [TechwithTim](https://www.youtube.com/@TechWithTim)
-    - [Colorama](https://pypi.org/project/colorama/)
-    - [ASCII art](https://pypi.org/project/art/)
+    - Caleb Curry: [python](https://www.youtube.com/watch?v=s3IvdkCq2_c&list=PLM5gEw77Ulp6NS27tsxG82WYwFzqP93nh&index=7)
+    - YouTube: [TechwithTim](https://www.youtube.com/@TechWithTim)
+    - Colorama: [Colorama](https://pypi.org/project/colorama/)
+    - ASCII: [ASCII art](https://pypi.org/project/art/)
 
 ## Content
 
