@@ -112,10 +112,12 @@ The chart was a referance when writing the code.
 
 - Everything works correctly after manual testing
 
+
 ## Automated Testing
 
 - The code was passed through the Code Institute Python Linter without any errors
 ![Screenshot of tezt results](images/ci_python_linter.png)
+
 
 ## Bugs Fixed
 - I used (0, (BOARD_SIZE_X -1)) in placing the ships on the board. BOARD_SIZE_X = 9 so I needed to subtract 1 to make it fit into the board. Grid size starts at 0 not 1.
@@ -148,24 +150,26 @@ would be updated and the check_game_over() would still work without changes.
     - Find your GitHub repository with the search bar and press connect
     - Finally click "Deploy Branch"
 
+
 ## Credits and resources 
 
-    - Code institute: Python code and walk-through project 
-    - Mentor Support: Spencer Barriball
-    - Tutor Support: Tutors at Code institute
-    - Random randint() function in Python: [Random function](https://www.geeksforgeeks.org/python-randint-function/)
-    - Geeksforgeeks: [string .join()](https://www.geeksforgeeks.org/python-string-join-method/) 
-    - String .join: [W3schools](https://www.w3schools.com/python/ref_string_join.asp)
-    - W3schools .strip: [.strip()](https://www.w3schools.com/python/ref_string_strip.asp) takes out any space before or after.
-    - W3schools .items: [.items()](https://www.w3schools.com/python/ref_dictionary_items.asp) view object, key-value pairs
-    - W3school .ord: [.ord()](https://www.w3schools.com/python/ref_func_ord.asp) return the number that represents the letter
-    - realpython.com how to add delay in your code. import time,  running  time.sleep()
-    - Caleb Curry: [python](https://www.youtube.com/watch?v=s3IvdkCq2_c&list=PLM5gEw77Ulp6NS27tsxG82WYwFzqP93nh&index=7)
-    - YouTube: [TechwithTim](https://www.youtube.com/@TechWithTim)
-    - Colorama: [Colorama](https://pypi.org/project/colorama/)
-    - ASCII: [ASCII art](https://pypi.org/project/art/)
+- Code institute: Python code and walk-through project 
+- Mentor Support: Spencer Barriball
+- Tutor Support: Tutors at Code institute
+- Random randint() function in Python: [Random function](https://www.geeksforgeeks.org/python-randint-function/)
+- Geeksforgeeks: [string .join()](https://www.geeksforgeeks.org/python-string-join-method/) 
+- String .join: [W3schools](https://www.w3schools.com/python/ref_string_join.asp)
+- W3schools .strip: [.strip()](https://www.w3schools.com/python/ref_string_strip.asp) takes out any space before or after.
+- W3schools .items: [.items()](https://www.w3schools.com/python/ref_dictionary_items.asp) view object, key-value pairs
+- W3school .ord: [.ord()](https://www.w3schools.com/python/ref_func_ord.asp) return the number that represents the letter
+- realpython.com how to add delay in your code. import time,  running  time.sleep()
+- Caleb Curry: [python](https://www.youtube.com/watch?v=s3IvdkCq2_c&list=PLM5gEw77Ulp6NS27tsxG82WYwFzqP93nh&index=7)
+- YouTube: [TechwithTim](https://www.youtube.com/@TechWithTim)
+- Colorama: [Colorama](https://pypi.org/project/colorama/)
+- ASCII: [ASCII art](https://pypi.org/project/art/)
+
 
 ## Content
 
-    - All text was written by the developer, Andrew O'Dwyer
-    - Photoshop was used to crop and stitch images together for the read me.
+- All text was written by the developer, Andrew O'Dwyer
+- Photoshop was used to crop and stitch images together for the read me.

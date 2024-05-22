@@ -304,36 +304,42 @@ def main():
 
     user_name = battleships_intro()
 
-    player_board = create_grid()
-    computer_board = create_grid()
-    player_shot = create_grid()
-    computer_shot = create_grid()
+    while True:
+        player_board = create_grid()
+        computer_board = create_grid()
+        player_shot = create_grid()
+        computer_shot = create_grid()
 
-    print("Placing ships...")
-    # ships are placed in the player_board
-    place_ships(player_board)
-    # ships are placed in the player_board
-    place_ships(computer_board)
+        print("Placing ships...")
+        # ships are placed in the player_board
+        place_ships(player_board)
+        # ships are placed in the player_board
+        place_ships(computer_board)
 
-    # game plays
-    play_game = True
-    while play_game:
-        print("\nPlayer's Board:")
-        print_board(player_shot, player_board)
-        # computer_board and player_shot are arguments.
-        # check 'X', 'O' or ' ' & instructions on what to do
-        player_turn(computer_board, player_shot)
-        # computer_board is an argument, check score == TOTAL_AREA_OF_ALL_SHIPS
-        if check_game_over(computer_board):
-            print(f"{user_name}, You win!")
-            break
-        time.sleep(1)
-        computer_turn(player_board, computer_shot)
-        # player_board is an argument, check score == TOTAL_AREA_OF_ALL_SHIPS
-        # player_board is the one with players ship positions
-        # if they're all hit, the computer wins
-        if check_game_over(player_board):
-            print(f"Better Luck next time {user_name}, Computer wins!")
+        play_game = True
+        while play_game:
+            print("\nPlayer's Board:")
+            print_board(player_shot, player_board)
+            # computer_board and player_shot are arguments.
+            # check 'X', 'O' or ' ' & instructions on what to do
+            player_turn(computer_board, player_shot)
+            if check_game_over(computer_board):
+                print(f"{user_name}, You win!")
+                break
+            time.sleep(1)
+            computer_turn(player_board, computer_shot)
+            # player_board is an argument,
+            # check score == TOTAL_AREA_OF_ALL_SHIPS
+            # player_board is the one with players ship positions
+            # if they're all hit, the computer wins
+            if check_game_over(player_board):
+                print(f"{user_name}, You lose!")
+                break
+
+        play_again = input("Play again? (Y/N): ").strip().upper()
+        # If input is not Y, game is over
+        if play_again != 'Y':
+            print("Thanks for playing Battleships!")
             break
 
 
