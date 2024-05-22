@@ -53,6 +53,7 @@ FW = Fore.WHITE
 FB = Fore.BLACK
 BR = Back.RED
 BB = Back.BLUE
+FR = Fore.RED
 
 
 """
@@ -86,7 +87,7 @@ def battleships_intro():
             if menu_request == '1':
                 print("""
             Battleships is a classic two-player game played on a grid.
-            You'll play against the computer, each having 5 ships or
+            You'll play against the computer, each having 5 ships of
             varying sizes. The first to hit all 5 ships is the winner.
             You will see 2 grids, a tracking board and a ships position
             board. Both boards update with a 'X' for a hit and a 'O'
@@ -106,12 +107,12 @@ def battleships_intro():
             the game is to destroy the opposing player's fleet.
                 """)
         else:
-            print(f"{Fore.RED}No, you just need to input 1, 2, or 3{SRA}")
+            print(f"{FR}No, you just need to input 1, 2, or 3{SRA}")
 
     user_name = input("What is your name: \n").strip()
     # no or empty input gives invalid message
     while user_name == '':
-        user_name = input("Invalid! What is your name: \n").strip()
+        user_name = input(f"{FR}Invalid! What is your name: {SRA}").strip()
     print(f"Hello {user_name}, are you ready to play?\n")
     return user_name
 

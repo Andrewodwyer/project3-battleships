@@ -90,3 +90,57 @@ The chart was a referance when writing the code.
 - time.sleep()
     - After player shot and received the information on whether it was a hit or miss, I wanted a delay of 1 second so the player could take it in before been distracted by the to grids again.
     ![time.sleep(1)](images/time_sleep.png)
+
+## Manual Testing
+
+- Game loads with link
+- Options 1, 2, 3. game should only start if 3 is input
+    - Read Instructions displays instructions when input is 1. 3 options appear again
+    - Game information displays correctly when input is 2. 3 options appear again
+    - Game starts when input is 3
+    - When input is anything other then 1,2,3. an error message is printed. 3 options appear again
+    ![error message](images/input_error_intro.png)
+- Name input: 
+
+## Automated Testing
+
+- The code was passed through the Code Institute Python Linter without any errors
+![Screenshot of tezt results](images/ci_python_linter.png)
+
+## Deployment
+
+- Heroku
+    - On the heroku dashboard, click "New" and select "Create new app"
+    - Input a name for the app
+    - Select Europe for the region
+    - Press the button Create app
+    - Next choose "Settings" from the tab above
+    - Click "Reveal Config Vars
+    - Input CREDS and your file name
+    - Below this you'll "Add buildpack", heroku/python first and heroku/nodejs second. Make sure it is in this order.
+    - From the tabs above, select "Deploy"
+    - Select "GitHub"
+    - Select the "Connect to GitHub" button
+    - Find your GitHub repository with the search bar and press connect
+    - Finally click "Deploy Branch"
+
+## Credits and resources 
+    - Code institute: Python code and walk-through project 
+    - Mentor Support: Spencer Barriball
+    - Tutor Support: Tutors at Code institute
+    - Random randint() function in Python: [Random function](https://www.geeksforgeeks.org/python-randint-function/)
+    - [string .join()](https://www.geeksforgeeks.org/python-string-join-method/) 
+    - [W3schools](https://www.w3schools.com/python/ref_string_join.asp)
+    - W3schools [.strip()](https://www.w3schools.com/python/ref_string_strip.asp) takes out any space before or after.
+    - W3schools [.items()](https://www.w3schools.com/python/ref_dictionary_items.asp) view object, key-value pairs
+    - W3school [.ord()](https://www.w3schools.com/python/ref_func_ord.asp) return the number that represents the letter
+    - realpython.com how to add delay in your code. import time,  running  time.sleep()
+    - Caleb Curry [python](https://www.youtube.com/watch?v=s3IvdkCq2_c&list=PLM5gEw77Ulp6NS27tsxG82WYwFzqP93nh&index=7)
+    - [TechwithTim](https://www.youtube.com/@TechWithTim)
+    - [Colorama](https://pypi.org/project/colorama/)
+    - [ASCII art](https://pypi.org/project/art/)
+
+## Content
+
+    - All text was written by the developer, Andrew O'Dwyer
+    - Photoshop was used to crop and stitch images together for the read me.
