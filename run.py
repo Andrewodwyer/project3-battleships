@@ -214,7 +214,18 @@ def player_turn(computer_board, player_shot):
             c = ord(target[0]) - ord('A')
             if player_shot[r][c] != HIT_MRK and player_shot[r][c] != MISS_MRK:
                 if computer_board[r][c] != ' ':
-                    print(f"{FW + BR}Hit, jolly good shot old chap!{SRA}\n")
+                    print(f"{FW+BR}Hit, jolly good shot old chap!{SRA}\n")
+                    # print what ship was hit
+                    if computer_board[r][c] == BW+SN + "B" + SRA:
+                        print(f"{FW+BR}Computer Battleship hit!{SRA}\n")
+                    elif computer_board[r][c] == BW+SN + "C" + SRA:
+                        print(f"{FW+BR}Computer Cruiser hit!{SRA}\n")
+                    elif computer_board[r][c] == BW+SN + "A" + SRA:
+                        print(f"{FW+BR}Comp Aircraft Carrier hit!{SRA}\n")
+                    elif computer_board[r][c] == BW+SN + "D" + SRA:
+                        print(f"{FW+BR}Computer Destroyer hit!{SRA}\n")
+                    elif computer_board[r][c] == BW+SN + "S" + SRA:
+                        print(f"{FW+BR}Computer Submarine hit!{SRA}\n")
                     # HIT_MRK = red X
                     player_shot[r][c] = HIT_MRK
                     computer_board[r][c] = 'X'
@@ -253,6 +264,17 @@ def computer_turn(player_board, computer_shot):
             if player_board[r][c] != ' ':
                 # strings e.g "A""2"
                 print(f"{FW + BR}Computer hit at {str(r_c)}{str(r)}{BR}")
+                # print what ship was hit
+                if player_board[r][c] == BW+SN + "B" + SRA:
+                    print(f"{FW+BR}Your Battleship is hit!{SRA}")
+                elif player_board[r][c] == BW+SN + "C" + SRA:
+                    print(f"{FW+BR}Your Cruiser is hit!{SRA}")
+                elif player_board[r][c] == BW+SN + "A" + SRA:
+                    print(f"{FW+BR}Your Aircraft Carrier hit!{SRA}")
+                elif player_board[r][c] == BW+SN + "D" + SRA:
+                    print(f"{FW+BR}Your Destroyer is hit!{SRA}")
+                elif player_board[r][c] == BW+SN + "S" + SRA:
+                    print(f"{FW+BR}Your Submarine is hit!{SRA}")
                 # update computer tracking board with X
                 computer_shot[r][c] = 'X'
                 # update player board with a red background X

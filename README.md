@@ -9,6 +9,10 @@ This version is a terminal based game. You'll view 2 grids, a tracking board to 
 The live game can be seen here:
 https://battleship-project3-a-133f293668e9.herokuapp.com/
 
+## Project Goal
+
+- I wanted to design a terminal based battleship game that followed the same 
+
 ## Research
 
 I got the information on the game from https://en.wikipedia.org/wiki/Battleship_(game) and https://battleship.fandom.com/wiki/Battleship_(game)
