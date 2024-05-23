@@ -1,6 +1,6 @@
 # Battleships
 
-Battleships is a classic two-player. You will play the computer, each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. 
+Battleships is a classic two-player game. You will play the computer, each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. 
 This version is a terminal based game. You'll view 2 grids, a tracking board to see where you have fired and a ship position grid for your ships.
 
 
@@ -11,15 +11,17 @@ https://battleship-project3-a-133f293668e9.herokuapp.com/
 
 ## Project Goal
 
-- I wanted to design a terminal based battleship game that followed the same 
+- I wanted to design a terminal based battleships game that followed the same format as the original. 
 
 ## Research
 
 I got the information on the game from https://en.wikipedia.org/wiki/Battleship_(game) and https://battleship.fandom.com/wiki/Battleship_(game)
+Using this research I wrote instructions on how to play my game and information on the concept of the game.
+This information was used in the intro to the game. Read Instructions is option one and Game Information is option 2.
 
 - 1. Read Instructions
     - Battleships is a classic two-player. You will play the computer and each having 5 ships of varying sizes. The first to hit all 5 ships is the winner. You will see 2 grids, a tracking board and a ships position board. Both boards update with a ‘X’ for a hit and a ‘O’ for a miss. The tracking board shows if you hit the computer ship. The ship position board will show if the computer has hit or missed your ship. 
-    Players take turns to try to guess the locations of the other player's ships by calling out coordinates (e.g., A3, B7) on the grid. The goal is to sink all of the opponent's ships before they sink yours.
+    The player takes turns against the computer to guess the locations of the computer's ships by entering co-ordinates (e.g., A3, B7) on the grid. The goal is to sink all of the computer's ships before they sink yours.
 
 - 2. Game Information
     - Battleship is a strategy type guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
@@ -44,9 +46,9 @@ The chart was a referance when writing the code.
     - This function will be used to create 4 boards. 1 each for the computer and players ship positions and 1 each for the computer and players shots.
 
 - Function 3. Print board
-    - Two boards are printed. They take there parameters of the player_shot (tracking board) and player_board (ship position).
+    - Two boards are printed. player_shot (tracking board) and player_board (ship position) are placed in as arguments.
 
-- Function 3, place ships. 
+- Function 3, Place ships. 
     - The 5 ships of varying sizes are placed on the board, both horizontal and vertical. With random orientation and position on the grid. 
     - The ships are given a grey colour to match the original game. A letter to indicate what type of ship it is. e.g. ’S’ would be a submarine.
     - The 5 ships are:
@@ -75,7 +77,7 @@ The chart was a referance when writing the code.
         - 4, while play_game is true, do the following
             - print the board for the player to see, player_shot (tracking board) and player_board (ship position).
             - player turn and update hit and miss
-            - check game over on on computer board. if so you win
+            - check game over on computer board. if so you win
             - time.sleep(1) 1 second before moving on to computers turn
             - Computers turn and update hit and miss
             - check game over on player board. if so you loose
