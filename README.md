@@ -145,15 +145,13 @@ would be updated and the check_game_over() would still work without changes.
 
 ## Deployment
 
-- Heroku
+- Heroku was used to deploy my project online. Below are the steps
     - On the heroku dashboard, click "New" and select "Create new app"
     - Input a name for the app
     - Select Europe for the region
     - Press the button Create app
     - Next choose "Settings" from the nav bar above
-    - Click "Reveal Config Vars
-    - Input CREDS and your file name
-    - Below this you'll "Add buildpack", heroku/python first and heroku/nodejs second. Make sure it is in this order.
+    - "Add buildpack", heroku/python first and heroku/nodejs second. Make sure it is in this order.
     - From the nav bar above, select "Deploy"
     - Select "GitHub"
     - Select the "Connect to GitHub" button
