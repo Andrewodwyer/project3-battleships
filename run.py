@@ -217,15 +217,15 @@ def player_turn(computer_board, player_shot):
                     print(f"{FW+BR}Hit, jolly good shot old chap!{SRA}\n")
                     # print what ship was hit
                     if computer_board[r][c] == BW+SN + "B" + SRA:
-                        print(f"{FW+BR}Computer Battleship hit!{SRA}\n")
+                        print(f"{FW+BR}Computer's Battleship hit!{SRA}\n")
                     elif computer_board[r][c] == BW+SN + "C" + SRA:
-                        print(f"{FW+BR}Computer Cruiser hit!{SRA}\n")
+                        print(f"{FW+BR}Computer's Cruiser hit!{SRA}\n")
                     elif computer_board[r][c] == BW+SN + "A" + SRA:
-                        print(f"{FW+BR}Comp Aircraft Carrier hit!{SRA}\n")
+                        print(f"{FW+BR}Comp's Aircraft Carrier hit!{SRA}\n")
                     elif computer_board[r][c] == BW+SN + "D" + SRA:
-                        print(f"{FW+BR}Computer Destroyer hit!{SRA}\n")
+                        print(f"{FW+BR}Computer's Destroyer hit!{SRA}\n")
                     elif computer_board[r][c] == BW+SN + "S" + SRA:
-                        print(f"{FW+BR}Computer Submarine hit!{SRA}\n")
+                        print(f"{FW+BR}Computer's Submarine hit!{SRA}\n")
                     # HIT_MRK = red X
                     player_shot[r][c] = HIT_MRK
                     computer_board[r][c] = 'X'
