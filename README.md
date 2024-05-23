@@ -58,11 +58,11 @@ The chart was a referance when writing the code.
 
 - Function 4, players turn.
     - The computers board (ship position) is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
-    - There is also a printed message.
+    - There is a printed message to say if was a hit and another printed message to say what type of ship was hit
 
 - Function 5, computers turn.
     - The player board (ship position) is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
-    - There is also a printed message.
+    - There is a printed message to say if was a hit and another printed message to say what type of ship was hit
 
 - Function 6, check game over.
     - The counter starts at 0 and when it reaches the constant of TOTAL_AREA_OF_ALL_SHIPS (sum of all ships) the game finishes.
