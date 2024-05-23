@@ -21,7 +21,7 @@ I got the information on the game from https://en.wikipedia.org/wiki/Battleship_
     - Battleship is a strategy type guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns taking shots at coordinates (e.g. A1, B5) at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
 ## Design
-I used Lucidchats to design a flowchart to map out how the game would operate. [Lucidchart](https://www.lucidchart.com/)
+I used [Lucidchart](https://www.lucidchart.com/) to design a flowchart to map out how the game would operate. 
 The chart was a referance when writing the code.
 ![Flowchart](images/flowchart.png)
 
@@ -29,15 +29,14 @@ The chart was a referance when writing the code.
 
 - Function 1, Intro
     - intro page with 3 options. 
-    - 1. Read instructions, 2. Game information and 3. Play Game
+        - 1. Read instructions
+        - 2. Game information
+        - 3. Play Game
     - The options would display after the player chooses 1 and 2. Game would only start when the player chooses option 3
-    - Create a grid for each player.
-    - Define the size and number of ships for each player (e.g., one 5-cell ship, two 4-cell ships, etc.).
-    - Place the ships on the grid for each player. This can be done randomly or manually.
     - Input name: if the input is empty you’ll get an invalid message
 
 - Function 2, create a grid. 
-    - After research on the original game I used a 9x9 grid. 9 row and 9 columns. board size can be changed if required as the sizes are constants called BOARD_SIZE_X and BOARD_SIZE_Y. 
+    - After research on the original game I used a 9x9 grid. 9 row and 9 columns. Board size can be changed if required as the sizes are constants called BOARD_SIZE_X and BOARD_SIZE_Y. 
     - This function will be used to create 4 boards. 1 each for the computer and players ship positions and 1 each for the computer and players shots.
 
 - Function 3. Print board
@@ -45,19 +44,25 @@ The chart was a referance when writing the code.
 
 - Function 3, place ships. 
     - The 5 ships of varying sizes are placed on the board, both horizontal and vertical. With random orientation and position on the grid. 
-    - The ships are given a grey colour to match the original game and a letter to indicate what type of ship it is. e.g. ’S’ would be a submarine.
+    - The ships are given a grey colour to match the original game. A letter to indicate what type of ship it is. e.g. ’S’ would be a submarine.
+    - The 5 ships are:
+        - Aircraft carrier, taking up 5 spaces
+        - Battleship, 4 spaces
+        - Destroyer, 3 spaces
+        - Submarine, 2 spaces
+        - Cruiser, 2 spaces
 
 - Function 4, players turn.
-    - The computers board is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
+    - The computers board (ship position) is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
     - There is also a printed message.
 
 - Function 5, computers turn.
-    - The player board is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
+    - The player board (ship position) is checked to see if there is a ship at those coordinates and updates the board with a X for hit or O for miss. 
     - There is also a printed message.
 
 - Function 6, check game over.
     - The counter starts at 0 and when it reaches the constant of TOTAL_AREA_OF_ALL_SHIPS (sum of all ships) the game finishes.
-        - To get the total number of spaces the 5 battleships took up. I placed the ships in a dictionary with their ship names and the value of their spaces. Using list comprehension I got the integer for each ship, summed those values and got the TOTAL_AREA_OF_ALL_SHIPS which I used in check_game_over. score is 0, if score == TOTAL_AREA_OF_ALL_SHIPS, return true. This check_game_over() was used to check player and computer after each turn. 
+        - To get the total number of spaces the 5 battleships took up. I placed the ships in a dictionary with their ship names and the value of their spaces. Using list comprehension I got the integer for each ship, summed those values and got the TOTAL_AREA_OF_ALL_SHIPS which I used in check_game_over. Score is 0, if score == TOTAL_AREA_OF_ALL_SHIPS, return true. This check_game_over() was used to check player and computer after each turn. 
 
 - Function 7, main. 
     - 1, intro
@@ -71,7 +76,7 @@ The chart was a referance when writing the code.
             - Computers turn and update hit and miss
             - check game over on player board. if so you loose
             - break loop
-- Option to play again when game is over
+        - Option to play again when game is over
 
 # UX Design
 
@@ -84,18 +89,18 @@ The chart was a referance when writing the code.
     - [Colorama](https://pypi.org/project/colorama/)
     Colorama was used a number of times for UX design
     - Error text red, indicating there was an error 
-    - Hit or Miss. I used a red background for a hit and a blue background for a miss, for both the tracking boards (showing where the played had shot) and player ship positions (showing if the computer had hit the players ship). 
+    - Hit or Miss. I used a red background for a hit and a blue background for a miss, for both the tracking boards (showing where the player had shot) and player ship positions (showing if the computer had hit the players ship). 
     - Red background with an ‘X’ for a hit or blue background with a ‘O’ for miss. 
     - Text for hit and miss. I used the same red and blue backgrounds for the text that was printed to the terminal after the players turn and computers turn
     ![hit, miss and ship colour](images/game_play.png)
 
 - time.sleep()
-    - After player shot and received the information on whether it was a hit or miss, I wanted a delay of 1 second so the player could take it in before been distracted by the to grids again.
+    - After player shot and received the information on whether it was a hit or miss, I wanted a delay of 1 second so the player could take it in before been distracted by the two grids again.
     ![time.sleep(1)](images/time_sleep.png)
 
 - Game Board design:
     - The player tracking grid and the player ship positions were on top of each other initially, making it hard to see without scrolling up. In order to fix this I placed 2 grids side by side in the print_board function and gave it parameters for 2 boards, the tracking board and the players ship positions.
-    This function is called in the main game and is given the arguments, player_tracking_board and player_board to print these boards to the terminal
+    This function is called in the main game and is given the arguments, player_shot and player_board to print these boards to the terminal
 
 ## Manual Testing
 
@@ -106,9 +111,9 @@ The chart was a referance when writing the code.
     - Game starts when input is 3
     - When input is anything other then 1,2,3. an error message is printed. 3 options appear again
     ![error message](images/input_error_intro.png)
-- Name input: When nothing is added is displays an Invalid message and asks to input again
+- Name input: When an empty input is returned, it displays an Invalid message and asks to input again
     ![name empty](images/empty_input_for_name.png)
-- Co-ordinate input error: when the input length isn't 2 and isn't 0-8 for row and a-i for column
+- Co-ordinate input error: When the input length isn't 2 and isn't 0-8 for row and a-i for column
     ![Co-ordinate input error](images/co-ordinates_not_valid.png)
 
 - Everything works correctly after manual testing
