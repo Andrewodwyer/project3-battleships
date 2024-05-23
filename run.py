@@ -1,11 +1,5 @@
 # Text style
 from art import tprint
-# google sheets
-import gspread
-"""
-google sheets
-"""
-from google.oauth2.service_account import Credentials
 # generate random ship orientation and placement
 import random
 # for delay in printing new boards after results
@@ -16,20 +10,6 @@ init(autoreset=True)
 
 
 # Constants to represent elements on the grid/board
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
-
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('Battleships-project3')
-leaderboard = SHEET.worksheet('leaderboard')
-
-# print(data)
-data = leaderboard.get_all_values()
 
 BOARD_SIZE_X = 9
 BOARD_SIZE_Y = 9
@@ -207,7 +187,7 @@ def player_turn(computer_board, player_shot):
     player_turn = True
     while player_turn:
         # print("Your turn:")
-        target = input(f"Your turn. Enter target (e.g., A4): \n").upper()
+        target = input(f"Your turn. Enter target (e.g. A4):\n").upper().strip()
         if len(target) == 2 and target[0] in LETTERS and target[1] in NUMBERS:
             r = int(target[1])
             # ord() converts letters to numbers
